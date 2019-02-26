@@ -226,9 +226,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireKey: 119
-  airKey: 0
-  waterKey: 0
-  earthKey: 0
+  airKey: 97
+  waterKey: 100
+  earthKey: 115
+  idleSprite: {fileID: 21300000, guid: 1c736c5b64237c549b33bcd50a0dcca6, type: 3}
+  fireSprite: {fileID: 21300000, guid: 93b4384bc2a124b43af9241a5be2f3a7, type: 3}
+  airSprite: {fileID: 21300000, guid: 8449fccfbc6edd946aee814d9434d83f, type: 3}
+  waterSprite: {fileID: 21300000, guid: 1d15519ed02644545a9c85c58e0c9775, type: 3}
+  earthSprite: {fileID: 21300000, guid: f2708d0c9c3c3de40bc3f8c089fd7671, type: 3}
 --- !u!58 &903635636
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -282,7 +287,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1d15519ed02644545a9c85c58e0c9775, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1c736c5b64237c549b33bcd50a0dcca6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -438,4 +443,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 770abae0643bafb40a67338c12ff6312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shape: 0
   speed: 5
