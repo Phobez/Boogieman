@@ -76,8 +76,15 @@ public class Activator : MonoBehaviour
             if (note.GetComponent<Note>().shape == currentShape)
             {
                 Destroy(note);
+                AddScore();
+                active = false;
             }
         }
+    }
+
+    private void AddScore()
+    {
+        PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score") + 100);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
