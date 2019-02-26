@@ -15,6 +15,13 @@ public class Activator : MonoBehaviour
     public Sprite waterSprite;
     public Sprite earthSprite;
 
+    public GameObject firePrefab;
+    public GameObject airPrefab;
+    public GameObject waterPrefab;
+    public GameObject earthPrefab;
+
+    public bool createMode;
+
     private Note.Shape currentShape;
 
     private GameObject note;
@@ -38,46 +45,68 @@ public class Activator : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        // determines activator shape
-        if (Input.GetKey(fireKey))
+        if (createMode)
         {
-            currentShape = Note.Shape.FIRE;
-            sprRend.sprite = fireSprite;
-            sprRend.color = Color.red;
-        }
-        else if (Input.GetKey(airKey))
-        {
-            currentShape = Note.Shape.AIR;
-            sprRend.sprite = airSprite;
-            sprRend.color = Color.grey;
-        }
-        else if (Input.GetKey(waterKey))
-        {
-            currentShape = Note.Shape.WATER;
-            sprRend.sprite = waterSprite;
-            sprRend.color = Color.blue;
-        }
-        else if (Input.GetKey(earthKey))
-        {
-            currentShape = Note.Shape.EARTH;
-            sprRend.sprite = earthSprite;
-            sprRend.color = Color.green;
+            if (Input.GetKeyDown(fireKey))
+            {
+                Instantiate(firePrefab, transform.position, Quaternion.identity);
+            }
+            else if (Input.GetKeyDown(airKey))
+            {
+                Instantiate(airPrefab, transform.position, Quaternion.identity);
+            }
+            else if (Input.GetKeyDown(waterKey))
+            {
+                Instantiate(waterPrefab, transform.position, Quaternion.identity);
+            }
+            else if (Input.GetKeyDown(earthKey))
+            {
+                Instantiate(earthPrefab, transform.position, Quaternion.identity);
+            }
         }
         else
         {
-            currentShape = Note.Shape.IDLE;
-            sprRend.sprite = idleSprite;
-            sprRend.color = Color.white;
-        }
-
-        // determines if activator hits note or not
-        if (active)
-        {
-            if (note.GetComponent<Note>().shape == currentShape)
+            // determines activator shape
+            if (Input.GetKey(fireKey))
             {
-                Destroy(note);
-                AddScore();
-                active = false;
+                currentShape = Note.Shape.FIRE;
+                sprRend.sprite = fireSprite;
+                sprRend.color = Color.red;
+            }
+            else if (Input.GetKey(airKey))
+            {
+                currentShape = Note.Shape.AIR;
+                sprRend.sprite = airSprite;
+                sprRend.color = Color.grey;
+            }
+            else if (Input.GetKey(waterKey))
+            {
+                currentShape = Note.Shape.WATER;
+                sprRend.sprite = waterSprite;
+                sprRend.color = Color.blue;
+            }
+            else if (Input.GetKey(earthKey))
+            {
+                currentShape = Note.Shape.EARTH;
+                sprRend.sprite = earthSprite;
+                sprRend.color = Color.green;
+            }
+            else
+            {
+                currentShape = Note.Shape.IDLE;
+                sprRend.sprite = idleSprite;
+                sprRend.color = Color.white;
+            }
+
+            // determines if activator hits note or not
+            if (active)
+            {
+                if (note.GetComponent<Note>().shape == currentShape)
+                {
+                    Destroy(note);
+                    AddScore();
+                    active = false;
+                }
             }
         }
     }
