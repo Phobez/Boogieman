@@ -25,6 +25,7 @@ public class Activator : MonoBehaviour
     private Note.Shape currentShape;
 
     private GameObject note;
+    private GameObject gameManager;
 
     private SpriteRenderer sprRend;
 
@@ -33,6 +34,8 @@ public class Activator : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        gameManager = GameObject.Find("GameManager");
+
         sprRend = GetComponent<SpriteRenderer>();
 
         sprRend.sprite = idleSprite;
@@ -101,9 +104,10 @@ public class Activator : MonoBehaviour
             // determines if activator hits note or not
             if (active)
             {
-                if (note.GetComponent<Note>().shape == currentShape)
+                if (note != null && note.GetComponent<Note>().shape == currentShape)
                 {
                     Destroy(note);
+                    gameManager.GetComponent<GameManager>().AddStreak();
                     AddScore();
                     active = false;
                 }
@@ -111,9 +115,10 @@ public class Activator : MonoBehaviour
         }
     }
 
+    // a method to add to the score
     private void AddScore()
     {
-        PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score") + 100);
+        PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score") + gameManager.GetComponent<GameManager>().GetScore());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
