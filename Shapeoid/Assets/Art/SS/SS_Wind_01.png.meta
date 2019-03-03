@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 5bfc8a5987fe00a4897a71a99b02e63d
+guid: b4fccef1e400ea844b02c3ae0f24488f
 TextureImporter:
   fileIDToRecycleName:
     21300000: SS_Wind_01_0
-    21300002: SS_Wind_01_2
+    21300002: SS_Wind_01_1
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -89,10 +89,10 @@ TextureImporter:
       name: SS_Wind_01_0
       rect:
         serializedVersion: 2
-        x: 65
-        y: 117
-        width: 1082
-        height: 527
+        x: 84
+        y: 75
+        width: 562
+        height: 525
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -100,19 +100,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88f6d0c64b360d84484fc85715806bca
+      spriteID: a0e7fe0a051b07c4b8754ae3d01f679f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SS_Wind_01_2
+      name: SS_Wind_01_1
       rect:
         serializedVersion: 2
-        x: 1315
-        y: 125
-        width: 1011
-        height: 523
+        x: 729
+        y: 77
+        width: 527
+        height: 520
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,7 +120,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6793f715b38191e4486fe75785a71234
+      spriteID: d28093a1cb7b8b3488c9af5d1a9e3973
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d2431e4a22439664ba58d6a9d2e458be
+    spriteID: 73097376e177398409ba551708cc7ec5
     vertices: []
     indices: 
     edges: []
