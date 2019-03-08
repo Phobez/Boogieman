@@ -123,6 +123,11 @@ public class Activator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Victory Note"))
+        {
+            gameManager.GetComponent<GameManager>().Win();
+        }
+
         if (collision.gameObject.CompareTag("Note"))
         {
             active = true;
