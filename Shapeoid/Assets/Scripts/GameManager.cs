@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private int noteValue = 100;
+    [SerializeField]
+    private int powerValue = 50;
     private int multiplier;
     private int streak;
 
@@ -15,7 +17,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("Score", 0);
         PlayerPrefs.SetInt("Energy", 50);
-        Debug.Log(PlayerPrefs.GetInt("Energy"));
+        PlayerPrefs.SetInt("Power", 0);
 
         multiplier = 1;
         streak = 0;
@@ -29,15 +31,21 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.GetInt("Energy") + 1 < 50)
         {
             PlayerPrefs.SetInt("Energy", PlayerPrefs.GetInt("Energy") + 1);
-            Debug.Log(PlayerPrefs.GetInt("Energy"));
         }
 
         streak++;
 
-        if (streak >= 24) multiplier = 4;
-        else if (streak >= 16) multiplier = 3;
-        else if (streak >= 8) multiplier = 2;
-        else multiplier = 1;
+        if (multiplier <= 4)
+        {
+            if (streak >= 24) multiplier = 4;
+            else if (streak >= 16) multiplier = 3;
+            else if (streak >= 8) multiplier = 2;
+            else multiplier = 1;
+        }
+        else if (streak < 8)
+        {
+            multiplier = 1;
+        }
 
         UpdateGUIValues();
     }
@@ -46,7 +54,6 @@ public class GameManager : MonoBehaviour
     public void ResetStreak()
     {
         PlayerPrefs.SetInt("Energy", PlayerPrefs.GetInt("Energy") - 2);
-        Debug.Log(PlayerPrefs.GetInt("Energy"));
 
         if (PlayerPrefs.GetInt("Energy") < 0)
         {
@@ -62,6 +69,7 @@ public class GameManager : MonoBehaviour
     // a method to handle losing
     public void Lose()
     {
+        Time.timeScale = 0f;
         Debug.Log("You suck!");
     }
 
@@ -82,5 +90,11 @@ public class GameManager : MonoBehaviour
     public int GetScore()
     {
         return noteValue * multiplier;
+    }
+
+    // a method to return the power value of a hit note
+    public int GetPower()
+    {
+        return powerValue;
     }
 }

@@ -30,6 +30,7 @@ public class Activator : MonoBehaviour
     private SpriteRenderer sprRend;
 
     private bool active;
+    private bool isLongPressing;
 
     // Start is called before the first frame update
     private void Start()
@@ -43,11 +44,32 @@ public class Activator : MonoBehaviour
         currentShape = Note.Shape.IDLE;
 
         active = false;
+        isLongPressing = false;
     }
 
     // Update is called once per frame
     private void Update()
     {
+        // moves activator up and down
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            if (transform.position.y + 1.5f < 2f)
+            {
+                transform.Translate(new Vector3(0f, 1.5f, 0f));
+            }
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            if (transform.position.y - 1.5f >= -1.5f)
+            {
+                transform.Translate(new Vector3(0f, -1.5f, 0f));
+            }
+        }
+        else
+        {
+            transform.position = new Vector3(-4f, 0f, 0f);
+        }
+
         if (createMode)
         {
             if (Input.GetKeyDown(fireKey))
@@ -69,52 +91,36 @@ public class Activator : MonoBehaviour
         }
         else
         {
-            // moves activator up and down
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                if (transform.position.y + 1.5f < 2f)
-                {
-                    transform.Translate(new Vector3(0f, 1.5f, 0f));
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                if (transform.position.y - 1.5f >= -1.5f)
-                {
-                    transform.Translate(new Vector3(0f, -1.5f, 0f));
-                }
-            }
-
             // determines activator shape
             if (Input.GetKey(fireKey))
             {
                 currentShape = Note.Shape.FIRE;
                 sprRend.sprite = fireSprite;
-                sprRend.color = Color.red;
+                // sprRend.color = Color.red;
             }
             else if (Input.GetKey(airKey))
             {
                 currentShape = Note.Shape.AIR;
                 sprRend.sprite = airSprite;
-                sprRend.color = Color.grey;
+                // sprRend.color = Color.grey;
             }
             else if (Input.GetKey(waterKey))
             {
                 currentShape = Note.Shape.WATER;
                 sprRend.sprite = waterSprite;
-                sprRend.color = Color.blue;
+                // sprRend.color = Color.blue;
             }
             else if (Input.GetKey(earthKey))
             {
                 currentShape = Note.Shape.EARTH;
                 sprRend.sprite = earthSprite;
-                sprRend.color = Color.green;
+                // sprRend.color = Color.green;
             }
             else
             {
                 currentShape = Note.Shape.IDLE;
                 sprRend.sprite = idleSprite;
-                sprRend.color = Color.white;
+                // sprRend.color = Color.white;
             }
 
             // determines if activator hits note or not
@@ -131,8 +137,20 @@ public class Activator : MonoBehaviour
                     }
                     else if (note.CompareTag("Long Note"))
                     {
+                        if (!isLongPressing)
+                        {
+                            isLongPressing = true;
+                        }
                         gameManager.GetComponent<GameManager>().AddStreak();
                         AddScore();
+                    }
+                    else if (note.CompareTag("Empowered Note"))
+                    {
+                        Destroy(note);
+                        gameManager.GetComponent<GameManager>().AddStreak();
+                        AddScore();
+                        AddPower();
+                        active = false;
                     }
                 }
             }
@@ -145,6 +163,21 @@ public class Activator : MonoBehaviour
         PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score") + gameManager.GetComponent<GameManager>().GetScore());
     }
 
+    // a method to add to the power
+    // NOTE: FIND A WAY TO MOVE TO GAMEMANAGER
+    private void AddPower()
+    {
+        if (PlayerPrefs.GetInt("Power") + 50 < 100)
+        {
+            PlayerPrefs.SetInt("Power", PlayerPrefs.GetInt("Power") + gameManager.GetComponent<GameManager>().GetPower());
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Multiplier", PlayerPrefs.GetInt("Multiplier") * 2);
+            PlayerPrefs.SetInt("Power", 0);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Victory Note"))
@@ -152,7 +185,7 @@ public class Activator : MonoBehaviour
             gameManager.GetComponent<GameManager>().Win();
         }
 
-        if (collision.gameObject.CompareTag("Note") || collision.gameObject.CompareTag("Long Note"))
+        if (collision.gameObject.CompareTag("Note") || collision.gameObject.CompareTag("Long Note") || collision.gameObject.CompareTag("Empowered Note"))
         {
             active = true;
             note = collision.gameObject;
@@ -163,11 +196,12 @@ public class Activator : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Long Note"))
         {
-            if (note.GetComponent<Note>().shape != currentShape)
+            if (isLongPressing && note.GetComponent<Note>().shape != currentShape)
             {
                 // Destroy(note);
                 gameManager.GetComponent<GameManager>().ResetStreak();
                 active = false;
+                isLongPressing = false;
             }
         }
     }
