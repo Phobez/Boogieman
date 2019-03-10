@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         PlayerPrefs.SetInt("Score", 0);
-        PlayerPrefs.SetInt("Power", 50);
-        Debug.Log(PlayerPrefs.GetInt("Power"));
+        PlayerPrefs.SetInt("Energy", 50);
+        Debug.Log(PlayerPrefs.GetInt("Energy"));
 
         multiplier = 1;
         streak = 0;
@@ -26,10 +26,10 @@ public class GameManager : MonoBehaviour
     // a method to increase the streak and determine the current multiplier
     public void AddStreak()
     {
-        if (PlayerPrefs.GetInt("Power") + 1 < 50)
+        if (PlayerPrefs.GetInt("Energy") + 1 < 50)
         {
-            PlayerPrefs.SetInt("Power", PlayerPrefs.GetInt("Power") + 1);
-            Debug.Log(PlayerPrefs.GetInt("Power"));
+            PlayerPrefs.SetInt("Energy", PlayerPrefs.GetInt("Energy") + 1);
+            Debug.Log(PlayerPrefs.GetInt("Energy"));
         }
 
         streak++;
@@ -45,10 +45,10 @@ public class GameManager : MonoBehaviour
     // a method to reset the streak
     public void ResetStreak()
     {
-        PlayerPrefs.SetInt("Power", PlayerPrefs.GetInt("Power") - 2);
-        Debug.Log(PlayerPrefs.GetInt("Power"));
+        PlayerPrefs.SetInt("Energy", PlayerPrefs.GetInt("Energy") - 2);
+        Debug.Log(PlayerPrefs.GetInt("Energy"));
 
-        if (PlayerPrefs.GetInt("Power") < 0)
+        if (PlayerPrefs.GetInt("Energy") < 0)
         {
             Lose();
         }

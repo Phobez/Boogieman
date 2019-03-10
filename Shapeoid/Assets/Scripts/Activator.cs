@@ -69,6 +69,22 @@ public class Activator : MonoBehaviour
         }
         else
         {
+            // moves activator up and down
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                if (transform.position.y + 1.5f < 2f)
+                {
+                    transform.Translate(new Vector3(0f, 1.5f, 0f));
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                if (transform.position.y - 1.5f >= -1.5f)
+                {
+                    transform.Translate(new Vector3(0f, -1.5f, 0f));
+                }
+            }
+
             // determines activator shape
             if (Input.GetKey(fireKey))
             {
@@ -106,10 +122,18 @@ public class Activator : MonoBehaviour
             {
                 if (note != null && note.GetComponent<Note>().shape == currentShape)
                 {
-                    Destroy(note);
-                    gameManager.GetComponent<GameManager>().AddStreak();
-                    AddScore();
-                    active = false;
+                    if (note.CompareTag("Note"))
+                    {
+                        Destroy(note);
+                        gameManager.GetComponent<GameManager>().AddStreak();
+                        AddScore();
+                        active = false;
+                    }
+                    else if (note.CompareTag("Long Note"))
+                    {
+                        gameManager.GetComponent<GameManager>().AddStreak();
+                        AddScore();
+                    }
                 }
             }
         }
@@ -128,10 +152,23 @@ public class Activator : MonoBehaviour
             gameManager.GetComponent<GameManager>().Win();
         }
 
-        if (collision.gameObject.CompareTag("Note"))
+        if (collision.gameObject.CompareTag("Note") || collision.gameObject.CompareTag("Long Note"))
         {
             active = true;
             note = collision.gameObject;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Long Note"))
+        {
+            if (note.GetComponent<Note>().shape != currentShape)
+            {
+                // Destroy(note);
+                gameManager.GetComponent<GameManager>().ResetStreak();
+                active = false;
+            }
         }
     }
 
