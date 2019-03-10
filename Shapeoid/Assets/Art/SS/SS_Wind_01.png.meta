@@ -4,6 +4,7 @@ TextureImporter:
   fileIDToRecycleName:
     21300000: SS_Wind_01_0
     21300002: SS_Wind_01_1
+    21300004: SS_Wind_01_2
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -89,18 +90,18 @@ TextureImporter:
       name: SS_Wind_01_0
       rect:
         serializedVersion: 2
-        x: 84
-        y: 75
-        width: 562
-        height: 525
+        x: 112
+        y: 49
+        width: 780
+        height: 538
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0e7fe0a051b07c4b8754ae3d01f679f
+      spriteID: ff0a42d375a294447ab9bffe5477810a
       vertices: []
       indices: 
       edges: []
@@ -109,18 +110,18 @@ TextureImporter:
       name: SS_Wind_01_1
       rect:
         serializedVersion: 2
-        x: 729
-        y: 77
-        width: 527
-        height: 520
+        x: 990
+        y: 67
+        width: 851
+        height: 534
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d28093a1cb7b8b3488c9af5d1a9e3973
+      spriteID: 60f069850aa1b1e469af512943938ac9
       vertices: []
       indices: 
       edges: []
@@ -128,7 +129,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 73097376e177398409ba551708cc7ec5
+    spriteID: 95b2571ca2d6c88419a1ec62e76d79a2
     vertices: []
     indices: 
     edges: []
