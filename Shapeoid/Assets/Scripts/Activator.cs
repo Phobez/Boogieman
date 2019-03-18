@@ -30,6 +30,7 @@ public class Activator : MonoBehaviour
     private SpriteRenderer sprRend;
 
     private bool active;
+    private bool isPressing;
     private bool isLongPressing;
 
     // Start is called before the first frame update
@@ -44,6 +45,7 @@ public class Activator : MonoBehaviour
         currentShape = Note.Shape.IDLE;
 
         active = false;
+        isPressing = false;
         isLongPressing = false;
     }
 
@@ -97,32 +99,38 @@ public class Activator : MonoBehaviour
                 currentShape = Note.Shape.FIRE;
                 sprRend.sprite = fireSprite;
                 // sprRend.color = Color.red;
+                isPressing = true;
             }
             else if (Input.GetKey(airKey))
             {
                 currentShape = Note.Shape.AIR;
                 sprRend.sprite = airSprite;
                 // sprRend.color = Color.grey;
+                isPressing = true;
             }
             else if (Input.GetKey(waterKey))
             {
                 currentShape = Note.Shape.WATER;
                 sprRend.sprite = waterSprite;
                 // sprRend.color = Color.blue;
+                isPressing = true;
             }
             else if (Input.GetKey(earthKey))
             {
                 currentShape = Note.Shape.EARTH;
                 sprRend.sprite = earthSprite;
                 // sprRend.color = Color.green;
+                isPressing = true;
             }
             else
             {
                 currentShape = Note.Shape.IDLE;
                 sprRend.sprite = idleSprite;
                 // sprRend.color = Color.white;
+                isPressing = false;
             }
 
+            Debug.Log(active);
             // determines if activator hits note or not
             if (active)
             {
@@ -187,8 +195,11 @@ public class Activator : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Note") || collision.gameObject.CompareTag("Long Note") || collision.gameObject.CompareTag("Empowered Note"))
         {
-            active = true;
-            note = collision.gameObject;
+            if (!isPressing)
+            {
+                active = true;
+                note = collision.gameObject;
+            }
         }
     }
 
