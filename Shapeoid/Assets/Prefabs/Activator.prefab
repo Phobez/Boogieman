@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 769825986386123432}
   - component: {fileID: 769825986386123435}
-  - component: {fileID: 769825986386123434}
   - component: {fileID: 769825986386123437}
+  - component: {fileID: 1302813028}
   m_Layer: 0
   m_Name: Activator
   m_TagString: Untagged
@@ -81,22 +81,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &769825986386123434
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 769825986386123436}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &769825986386123437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,10 +98,10 @@ MonoBehaviour:
   waterKey: 100
   earthKey: 115
   idleSprite: {fileID: 21300000, guid: 1c736c5b64237c549b33bcd50a0dcca6, type: 3}
-  fireSprite: {fileID: 21300000, guid: 93b4384bc2a124b43af9241a5be2f3a7, type: 3}
-  airSprite: {fileID: 21300000, guid: 8449fccfbc6edd946aee814d9434d83f, type: 3}
-  waterSprite: {fileID: 21300000, guid: 1d15519ed02644545a9c85c58e0c9775, type: 3}
-  earthSprite: {fileID: 21300000, guid: f2708d0c9c3c3de40bc3f8c089fd7671, type: 3}
+  fireSprite: {fileID: 21300000, guid: 02597d152c17aba4b986987c76983622, type: 3}
+  airSprite: {fileID: 21300000, guid: f9c2b590d58767140970df01dcc330f8, type: 3}
+  waterSprite: {fileID: 21300000, guid: 87f8446c6249e474a9586ac7362d477f, type: 3}
+  earthSprite: {fileID: 21300000, guid: 411cac4c5ebda1a4493e94ca747634da, type: 3}
   firePrefab: {fileID: 8678572100750673867, guid: da94f41363276a449ad9ca400af4b94f,
     type: 3}
   airPrefab: {fileID: 8678572100750673867, guid: 1d72f9939deb963498990ce2b33d635c,
@@ -127,3 +111,29 @@ MonoBehaviour:
   earthPrefab: {fileID: 8678572100750673867, guid: 2921f04b42a437f4f94e1e691321dd8c,
     type: 3}
   createMode: 0
+--- !u!61 &1302813028
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769825986386123436}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1}
+  m_EdgeRadius: 0

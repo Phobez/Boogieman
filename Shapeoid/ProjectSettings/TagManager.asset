@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Note
   - Victory Note
+  - Long Note
+  - Empowered Note
   layers:
   - Default
   - TransparentFX
