@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         PlayerPrefs.SetInt("Score", 0);
-        PlayerPrefs.SetInt("Energy", 50);
+        PlayerPrefs.SetInt("Energy", 1000000);
         PlayerPrefs.SetInt("Power", 0);
 
         multiplier = 1;
