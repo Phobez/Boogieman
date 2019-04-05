@@ -130,7 +130,7 @@ public class Activator : MonoBehaviour
                 isPressing = false;
             }
 
-            Debug.Log(active);
+            // Debug.Log(active);
             // determines if activator hits note or not
             if (active)
             {

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8678572100750673865}
   - component: {fileID: 8678572100750673868}
   m_Layer: 0
-  m_Name: EarthKey
+  m_Name: EarthNote
   m_TagString: Note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
