@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Made by      : Abia Herlianto
+// Description  : Generates notes based on song data, depending on the current
+//                time of the song as well as other calculations to create a
+//                more efficient method compared to spawning all of them at
+//                once
 public class NoteGenerator : MonoBehaviour
 {
     public GameObject fireNote;
