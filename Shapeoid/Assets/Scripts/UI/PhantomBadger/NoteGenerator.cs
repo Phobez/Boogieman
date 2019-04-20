@@ -25,6 +25,7 @@ public class NoteGenerator : MonoBehaviour
     private float songTimer = 0.0f;
     private float barTime = 0.0f;
     private float barExecutedTime = 0.0f;
+    private GameObject player;
     private AudioSource audioSource;
     private SongParser.NoteData noteData;
     private float distance;
@@ -32,9 +33,10 @@ public class NoteGenerator : MonoBehaviour
     private int barCount = 0;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        audioSource = player.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -47,19 +49,26 @@ public class NoteGenerator : MonoBehaviour
             // calculate time offset using s = d /t equation
             // (t = d / s)
             distance = originalDistance;
-            float _timeOffset = distance / arrowSpeed;
+            float _timeOffset = distance * arrowSpeed;
+            // Debug.Log("Distance: " + distance);
+            // Debug.Log("Time Offset: " + _timeOffset);
 
             // get current time through song
             songTimer = audioSource.time;
+            // Debug.Log("Song Timer: " + songTimer);
 
+            // Debug.Log((songTimer - _timeOffset) + " >= " + (barExecutedTime - barTime));
             // if current song time - time offset is greater than
             // time taken for all executed bars so far
             // spawn the next bar's notes
             if (songTimer - _timeOffset >= (barExecutedTime - barTime))
             {
+                // Debug.Log("Current song time - time offset is greater than time taken for all executed bars so far.");
                 StartCoroutine(PlaceBar(noteData.bars[barCount++]));
+                // Debug.Log("Bar Count: " + barCount);
 
                 barExecutedTime += barTime;
+                // Debug.Log("Bar Executed Time: " + barExecutedTime);
             }
         }
     }
@@ -71,16 +80,19 @@ public class NoteGenerator : MonoBehaviour
     {
         for (int i = 0; i < bar.Count; i++)
         {
-            if (bar[i].bottom >= 0)
+            Debug.Log("Placing bars.");
+            if (IsThereNote(bar[i].bottom))
             {
                 GameObject _obj = (GameObject) Instantiate(GetNotePrefab(bar[i].bottom), new Vector3(bottomLane.transform.position.x + distance, bottomLane.transform.position.y, bottomLane.transform.position.z - 0.3f), Quaternion.identity);
             }
-            if (bar[i].middle >= 0)
+            if (bar[i].middle != 0)
             {
+                Debug.Log("Middle lane note.");
                 GameObject _obj = (GameObject) Instantiate(GetNotePrefab(bar[i].middle), new Vector3(middleLane.transform.position.x + distance, middleLane.transform.position.y, middleLane.transform.position.z - 0.3f), Quaternion.identity);
             }
-            if (bar[i].top >= 0)
+            if (bar[i].top != 0)
             {
+                Debug.Log("Top lane note.");
                 GameObject _obj = (GameObject) Instantiate(GetNotePrefab(bar[i].top), new Vector3(topLane.transform.position.x + distance, topLane.transform.position.y, topLane.transform.position.z - 0.3f), Quaternion.identity);
             }
 
@@ -93,12 +105,16 @@ public class NoteGenerator : MonoBehaviour
     {
         songData = newSongData;
         isInit = true;
+        Debug.Log("isInit set to: " + isInit);
 
         // estimate how many seconds a single 'bar' will be in the
         // song using the bpm in song data
+        Debug.Log("BPM: " + songData.bpm);
         barTime = (60.0f / songData.bpm) * 4.0f;
+        Debug.Log("barTime: " + barTime);
 
         distance = originalDistance;
+        Debug.Log("distance: " + distance);
 
         // how fast the arrow will be going
         arrowSpeed = 0.009f; // TEMPORARY MAGIC NUMBER
@@ -130,5 +146,20 @@ public class NoteGenerator : MonoBehaviour
         }
 
         return _obj;
+    }
+
+    private bool IsThereNote(SongParser.NoteType note)
+    {
+        switch (note)
+        {
+            case SongParser.NoteType.Fire:
+            case SongParser.NoteType.Air:
+            case SongParser.NoteType.Water:
+            case SongParser.NoteType.Earth:
+                Debug.Log("Return true");
+                return true;
+            default:
+                return false;
+        }
     }
 }

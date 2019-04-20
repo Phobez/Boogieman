@@ -14,6 +14,7 @@ public class SongParser
     // the start determines where the long note starts
     // the long note doesn't end until it encounters an end
     public enum NoteType : byte {
+        // Idle,
         Fire = 1,
         Air,
         Water,
@@ -80,9 +81,12 @@ public class SongParser
     // parsing the note file
     public Metadata Parse(string newFilePath)
     {
+        filePath = newFilePath;
+
         // check if the file path is empty
         if (IsNullOrWhiteSpace(filePath))
         {
+            Debug.Log("File path is null or white space: " + filePath);
             // if so, return invalid data
             Metadata tempMeta = new Metadata();
             tempMeta.valid = false;
@@ -145,6 +149,7 @@ public class SongParser
                         songData.musicPath = fileDir + line.Substring(line.IndexOf(':')).Trim(':').Trim(';');
                         if (IsNullOrWhiteSpace(songData.musicPath) || !File.Exists(songData.musicPath))
                         {
+                            Debug.Log("No music file found.");
                             // no music file found
                             songData.musicPath = null;
                             songData.valid = false;
@@ -171,13 +176,15 @@ public class SongParser
                             songData.sampleStart = sampleLengthDefault;
                         }
                         break;
-                    case "DISPLAYBM":
+                    case "BPM":
                         if (!float.TryParse(line.Substring(line.IndexOf(':')).Trim(':').Trim(';'), out songData.bpm))
                         {
+                            Debug.Log("BPM is not valid.");
                             // error parsing - BPM not valid
                             songData.valid = false;
                             songData.bpm = 0.0f;
                         }
+                        Debug.Log("DISPLAYBPM: " + songData.bpm);
                         break;
                     case "NOTES":
                         _inNotes = true;
@@ -243,7 +250,7 @@ public class SongParser
                 break;
             }
 
-            if (line.EndsWith(","))
+            if (line.StartsWith(","))
             {
                 noteData.bars.Add(bar);
                 bar = new List<Notes>();
@@ -252,7 +259,7 @@ public class SongParser
             {
                 continue;
             }
-            else if (line.Length >= 3)
+            else if (line.Length == 3)
             {
                 // in single 'note row' such as '010'
                 // check which column contains 'notes' and mark appropriate
@@ -264,17 +271,22 @@ public class SongParser
 
                 if (line[0] != '0')
                 {
-                    note.bottom = (NoteType) Convert.ToByte(line[0]);
+                    // Debug.Log(line[0]);
+                    // Debug.Log(Convert.ToByte(line[0]));
+                    note.bottom = (NoteType) (Convert.ToByte(line[0]) - 48);
+                    // Debug.Log(note.bottom.ToString());
+                    // Debug.Log(note.bottom);
                 }
                 if (line[1] != '0')
                 {
-                    note.middle = (NoteType)Convert.ToByte(line[1]);
+                    note.middle = (NoteType) (Convert.ToByte(line[1]) - 48);
                 }
                 if (line[2] != '0')
                 {
-                    note.top = (NoteType)Convert.ToByte(line[2]);
+                    note.top = (NoteType) (Convert.ToByte(line[2]) - 48);
                 }
 
+                // Debug.Log(note.top.ToString() + note.middle.ToString() + note.bottom.ToString());
                 // add this information to current bar and continue until end
                 bar.Add(note);
             }

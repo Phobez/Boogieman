@@ -39,6 +39,7 @@ public class SongSelector : MonoBehaviour
         for (int i = 0; i < _mnFiles.Length; i++)
         {
             SongParser _parser = new SongParser();
+            Debug.Log("Full name: " + _mnFiles[i].FullName);
             SongParser.Metadata _songData = _parser.Parse(_mnFiles[i].FullName);
 
             audioStartTime = _songData.sampleStart;
@@ -46,6 +47,7 @@ public class SongSelector : MonoBehaviour
 
             if (!_songData.valid)
             {
+                Debug.Log("Song data is not valid.");
                 // song data isn't valid
                 continue;
             }
@@ -53,7 +55,8 @@ public class SongSelector : MonoBehaviour
             {
                 GameObject _songObj = (GameObject)Instantiate(songSelectionPrefab, songSelectionList.transform.position, Quaternion.identity);
                 _songObj.GetComponentInChildren<Text>().text = _songData.title + " - " + _songData.artist;
-                _songObj.transform.parent = songSelectionList.transform;
+                // _songObj.transform.parent = songSelectionList.transform;
+                _songObj.transform.SetParent(songSelectionList.transform, false);
                 _songObj.transform.localScale = new Vector3(1, 1, 1); // reset scale just in case scale changes
 
                 // get access to button control
@@ -82,15 +85,25 @@ public class SongSelector : MonoBehaviour
     {
         Debug.Log("Starting preview for " + musicPath);
         string _url = string.Format("file://{0}", musicPath);
-        UnityWebRequest _unityWebRequest = new UnityWebRequest(_url);
+        //UnityWebRequest _unityWebRequest = new UnityWebRequest(_url);
 
-        while (!_unityWebRequest.isDone)
+        //while (!_unityWebRequest.isDone)
+        //{
+        //    yield return null;
+        //}
+
+        //_unityWebRequest = UnityWebRequestMultimedia.GetAudioClip(_url, AudioType.MPEG);
+        //audioSource.clip = DownloadHandlerAudioClip.GetContent(_unityWebRequest);
+
+        WWW _www = new WWW(_url);
+
+        while (!_www.isDone)
         {
             yield return null;
         }
 
-        _unityWebRequest = UnityWebRequestMultimedia.GetAudioClip(_url, AudioType.MPEG);
-        audioSource.clip = DownloadHandlerAudioClip.GetContent(_unityWebRequest);
+        AudioClip _clip = NAudioPlayer.FromMp3Data(_www.bytes);
+        audioSource.clip = _clip;
 
         Debug.Log("Loaded.");
 
@@ -99,7 +112,7 @@ public class SongSelector : MonoBehaviour
 
         currentSongPath = musicPath;
 
-        audioSource.volume = 0;
+        // audioSource.volume = 0;
     }
 
     // transitions from song selection to in-game
