@@ -7,6 +7,10 @@ using UnityEngine;
 //                time of the song as well as other calculations to create a
 //                more efficient method compared to spawning all of them at
 //                once
+
+/// <summary>
+/// A component to generate the song notes over time.
+/// </summary>
 public class NoteGenerator : MonoBehaviour
 {
     public GameObject fireNote;
@@ -148,6 +152,7 @@ public class NoteGenerator : MonoBehaviour
         return _obj;
     }
 
+    // checks if the note type exists
     private bool IsThereNote(SongParser.NoteType note)
     {
         switch (note)

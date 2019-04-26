@@ -1,24 +1,27 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-// Made by      : Abia Herlianto
-// Description  :
+/// <summary>
+/// The component which handles the movement and behaviour of regular Notes.
+/// </summary>
 public class NoteMover : MonoBehaviour
 {
     public GameObject activator;
     public SongParser.NoteType noteType;
 
-    private NoteGenerator noteGenerator;
-    private float arrowSpeed = 0.0f;
-    private KeyCode keyToPress;
+    protected NoteGenerator noteGenerator;
+    protected float arrowSpeed = 0.0f;
+    protected KeyCode keyToPress;
+    protected ScoreHandler scoreHandler;
 
-    private const float hitOffset = 0.075f;
-    private const float despawnTime = 1.5f;
+    protected const float hitOffset = 0.075f;
+    protected const float despawnTime = 1.5f;
 
     // Start is called before the first frame update
-    private void Start()
+    protected void Start()
     {
         noteGenerator = GameObject.FindGameObjectWithTag("GameController").GetComponent<NoteGenerator>();
+        scoreHandler = GameObject.FindGameObjectWithTag("GameController").GetComponent<ScoreHandler>();
 
         switch (noteType)
         {
@@ -42,13 +45,14 @@ public class NoteMover : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    protected void Update()
     {
         arrowSpeed = noteGenerator.arrowSpeed;
         Vector3 _tempPos = transform.position;
         _tempPos.x -= arrowSpeed;
         transform.position = -_tempPos;
 
+        // missed
         if (transform.position.x < activator.transform.position.x - hitOffset)
         {
             GetComponent<Renderer>().material.SetColor("_Color", new Color(0.5f, 0.0f, 0.0f));
@@ -56,21 +60,27 @@ public class NoteMover : MonoBehaviour
         }
     }
 
-    private void CheckLocation()
+    // checks if it can be hit
+    // destroys note if it can
+    protected virtual void CheckLocation()
     {
         if (transform.position.x >= activator.transform.position.y - hitOffset && transform.position.x <= activator.transform.position.x + hitOffset)
         {
+            scoreHandler.SendMessage("AddScore");
             Destroy(this.gameObject);
         }
     }
 
-    private IEnumerator DespawnNote()
+    // despawns note if missed
+    protected virtual IEnumerator DespawnNote()
     {
+        scoreHandler.SendMessage("LoseEnergy");
+        scoreHandler.SendMessage("ResetStreak");
         yield return new WaitForSeconds(despawnTime);
         Destroy(this.gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Activator") && Input.GetKeyDown(keyToPress))
         {
