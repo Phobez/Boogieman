@@ -15,6 +15,8 @@ public class ScoreHandler : MonoBehaviour
     public Text scoreText;
     public Text streakText;
     public Text multiplierText;
+    public Text powerText;
+    public Text energyText;
 
     private SongController songController;
     private AudioSource audioSource;
@@ -38,6 +40,8 @@ public class ScoreHandler : MonoBehaviour
         scoreText.text = "Score: " + score;
         streakText.text = "Streak: " + streak;
         multiplierText.text = "Multiplier: " + multiplier + "x";
+        powerText.text = "Power: " + power;
+        energyText.text = "Energy: " + energy;
     }
 
     // adds score by scoreVal times the current value of multiplier

@@ -13,6 +13,7 @@ public class NoteMover : MonoBehaviour
     protected float arrowSpeed = 0.0f;
     protected KeyCode keyToPress;
     protected ScoreHandler scoreHandler;
+    protected bool isDespawning;
 
     protected const float hitOffset = 0.075f;
     protected const float despawnTime = 1.5f;
@@ -22,6 +23,9 @@ public class NoteMover : MonoBehaviour
     {
         noteGenerator = GameObject.FindGameObjectWithTag("GameController").GetComponent<NoteGenerator>();
         scoreHandler = GameObject.FindGameObjectWithTag("GameController").GetComponent<ScoreHandler>();
+        activator = GameObject.FindGameObjectWithTag("Player");
+
+        isDespawning = false;
 
         switch (noteType)
         {
@@ -42,6 +46,8 @@ public class NoteMover : MonoBehaviour
                 keyToPress = KeyCode.W;
                 break;
         }
+
+        // Debug.Log(keyToPress.ToString());
     }
 
     // Update is called once per frame
@@ -50,13 +56,19 @@ public class NoteMover : MonoBehaviour
         arrowSpeed = noteGenerator.arrowSpeed;
         Vector3 _tempPos = transform.position;
         _tempPos.x -= arrowSpeed;
-        transform.position = -_tempPos;
+        transform.position = _tempPos;
 
+        if (Input.GetKeyDown(keyToPress))
+        {
+            //Debug.Log("Key to Press if entered successfully.");
+            CheckLocation();
+        }
         // missed
-        if (transform.position.x < activator.transform.position.x - hitOffset)
+        if (transform.position.x < activator.transform.position.x - hitOffset && !isDespawning)
         {
             GetComponent<Renderer>().material.SetColor("_Color", new Color(0.5f, 0.0f, 0.0f));
             StartCoroutine(DespawnNote());
+            isDespawning = true;
         }
     }
 
@@ -64,8 +76,9 @@ public class NoteMover : MonoBehaviour
     // destroys note if it can
     protected virtual void CheckLocation()
     {
-        if (transform.position.x >= activator.transform.position.y - hitOffset && transform.position.x <= activator.transform.position.x + hitOffset)
+        if (transform.position.x >= activator.transform.position.x - hitOffset && transform.position.x <= activator.transform.position.x + hitOffset)
         {
+            //Debug.Log("Checking location.");
             scoreHandler.SendMessage("AddScore");
             Destroy(this.gameObject);
         }
@@ -75,16 +88,20 @@ public class NoteMover : MonoBehaviour
     protected virtual IEnumerator DespawnNote()
     {
         scoreHandler.SendMessage("LoseEnergy");
+        //Debug.Log("Lose energy sent.");
         scoreHandler.SendMessage("ResetStreak");
+        //Debug.Log("Reset streak sent.");
         yield return new WaitForSeconds(despawnTime);
         Destroy(this.gameObject);
     }
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Activator") && Input.GetKeyDown(keyToPress))
-        {
-            CheckLocation();
-        }
+        //Debug.Log("Trigger entered.");
+        //if (collision.gameObject.CompareTag("Player") && Input.GetKeyDown(keyToPress))
+        //{
+        //    Debug.Log("Trigger entered successfully.");
+        //    CheckLocation();
+        //}
     }
 }

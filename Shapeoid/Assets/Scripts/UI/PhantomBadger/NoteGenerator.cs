@@ -17,6 +17,10 @@ public class NoteGenerator : MonoBehaviour
     public GameObject airNote;
     public GameObject waterNote;
     public GameObject earthNote;
+    public GameObject empoweredFireNote;
+    public GameObject empoweredAirNote;
+    public GameObject empoweredWaterNote;
+    public GameObject empoweredEarthNote;
 
     public GameObject bottomLane;
     public GameObject middleLane;
@@ -84,20 +88,20 @@ public class NoteGenerator : MonoBehaviour
     {
         for (int i = 0; i < bar.Count; i++)
         {
-            Debug.Log("Placing bars.");
+            // Debug.Log("Placing bars.");
             if (IsThereNote(bar[i].bottom))
             {
-                GameObject _obj = (GameObject) Instantiate(GetNotePrefab(bar[i].bottom), new Vector3(bottomLane.transform.position.x + distance, bottomLane.transform.position.y, bottomLane.transform.position.z - 0.3f), Quaternion.identity);
+                GameObject _obj = (GameObject) Instantiate(GetNotePrefab(bar[i].bottom, true), new Vector3(bottomLane.transform.position.x + distance, bottomLane.transform.position.y, bottomLane.transform.position.z - 0.3f), Quaternion.identity);
             }
             if (bar[i].middle != 0)
             {
-                Debug.Log("Middle lane note.");
-                GameObject _obj = (GameObject) Instantiate(GetNotePrefab(bar[i].middle), new Vector3(middleLane.transform.position.x + distance, middleLane.transform.position.y, middleLane.transform.position.z - 0.3f), Quaternion.identity);
+                // Debug.Log("Middle lane note.");
+                GameObject _obj = (GameObject) Instantiate(GetNotePrefab(bar[i].middle, false), new Vector3(middleLane.transform.position.x + distance, middleLane.transform.position.y, middleLane.transform.position.z - 0.3f), Quaternion.identity);
             }
             if (bar[i].top != 0)
             {
-                Debug.Log("Top lane note.");
-                GameObject _obj = (GameObject) Instantiate(GetNotePrefab(bar[i].top), new Vector3(topLane.transform.position.x + distance, topLane.transform.position.y, topLane.transform.position.z - 0.3f), Quaternion.identity);
+                // Debug.Log("Top lane note.");
+                GameObject _obj = (GameObject) Instantiate(GetNotePrefab(bar[i].top, true), new Vector3(topLane.transform.position.x + distance, topLane.transform.position.y, topLane.transform.position.z - 0.3f), Quaternion.identity);
             }
 
             yield return new WaitForSeconds((barTime / bar.Count) - Time.deltaTime);
@@ -126,23 +130,51 @@ public class NoteGenerator : MonoBehaviour
     }
 
     // returns appropriate note prefab
-    private GameObject GetNotePrefab(SongParser.NoteType noteType)
+    private GameObject GetNotePrefab(SongParser.NoteType noteType, bool isEmpowered)
     {
         GameObject _obj = null;
 
         switch (noteType)
         {
             case SongParser.NoteType.Fire:
-                _obj = fireNote;
+                if (isEmpowered)
+                {
+                    _obj = empoweredFireNote;
+                }
+                else
+                {
+                    _obj = fireNote;
+                }
                 break;
             case SongParser.NoteType.Air:
-                _obj = airNote;
+                if (isEmpowered)
+                {
+                    _obj = empoweredAirNote;
+                }
+                else
+                {
+                    _obj = airNote;
+                }
                 break;
             case SongParser.NoteType.Water:
-                _obj = waterNote;
+                if (isEmpowered)
+                {
+                    _obj = empoweredWaterNote;
+                }
+                else
+                {
+                    _obj = waterNote;
+                }
                 break;
             case SongParser.NoteType.Earth:
-                _obj = earthNote;
+                if (isEmpowered)
+                {
+                    _obj = empoweredEarthNote;
+                }
+                else
+                {
+                    _obj = earthNote;
+                }
                 break;
             default:
                 _obj = fireNote;
@@ -161,7 +193,7 @@ public class NoteGenerator : MonoBehaviour
             case SongParser.NoteType.Air:
             case SongParser.NoteType.Water:
             case SongParser.NoteType.Earth:
-                Debug.Log("Return true");
+                // Debug.Log("Return true");
                 return true;
             default:
                 return false;
