@@ -19,5 +19,8 @@ public class MainMenuHandler : MonoBehaviour
         }
 
         GameData.songDirectory = _songDirectory;
+
+        // loads saved data
+        SaveLoad.Load();
     }
 }

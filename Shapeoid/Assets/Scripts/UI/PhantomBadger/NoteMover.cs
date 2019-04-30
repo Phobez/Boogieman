@@ -10,7 +10,7 @@ public class NoteMover : MonoBehaviour
     public SongParser.NoteType noteType;
 
     protected NoteGenerator noteGenerator;
-    protected float arrowSpeed = 0.0f;
+    protected float noteSpeed = 0.0f;
     protected KeyCode keyToPress;
     protected ScoreHandler scoreHandler;
     protected bool isDespawning;
@@ -29,22 +29,21 @@ public class NoteMover : MonoBehaviour
 
         switch (noteType)
         {
-            // TO DO: connect keyToPress with PlayerPrefs
             case SongParser.NoteType.Fire:
-                keyToPress = KeyCode.W;
+                keyToPress = GameData.currentSavedData.keyBindings["FireKey"];
                 break;
             case SongParser.NoteType.Air:
-                keyToPress = KeyCode.A;
+                keyToPress = GameData.currentSavedData.keyBindings["AirKey"];
                 break;
             case SongParser.NoteType.Water:
-                keyToPress = KeyCode.D;
+                keyToPress = GameData.currentSavedData.keyBindings["WaterKey"];
                 break;
             case SongParser.NoteType.Earth:
-                keyToPress = KeyCode.S;
+                keyToPress = GameData.currentSavedData.keyBindings["EarthKey"];
                 break;
-            default:
-                keyToPress = KeyCode.W;
-                break;
+            //default:
+            //    keyToPress = KeyCode.W;
+            //    break;
         }
 
         // Debug.Log(keyToPress.ToString());
@@ -53,9 +52,9 @@ public class NoteMover : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        arrowSpeed = noteGenerator.arrowSpeed;
+        noteSpeed = noteGenerator.noteSpeed;
         Vector3 _tempPos = transform.position;
-        _tempPos.x -= arrowSpeed;
+        _tempPos.x -= noteSpeed;
         transform.position = _tempPos;
 
         if (Input.GetKeyDown(keyToPress))

@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class ActivatorController : MonoBehaviour
 {
-    public KeyCode fireKey;
-    public KeyCode airKey;
-    public KeyCode waterKey;
-    public KeyCode earthKey;
-
     public Sprite idleSprite;
     public Sprite fireSprite;
     public Sprite airSprite;
@@ -16,6 +11,10 @@ public class ActivatorController : MonoBehaviour
     public Sprite earthSprite;
 
     private SpriteRenderer sprRend;
+    private KeyCode fireKey;
+    private KeyCode airKey;
+    private KeyCode waterKey;
+    private KeyCode earthKey;
 
     // Start is called before the first frame update
     private void Start()
@@ -23,6 +22,11 @@ public class ActivatorController : MonoBehaviour
         sprRend = GetComponent<SpriteRenderer>();
 
         sprRend.sprite = idleSprite;
+
+        fireKey = GameData.currentSavedData.keyBindings["FireKey"];
+        airKey = GameData.currentSavedData.keyBindings["AirKey"];
+        waterKey = GameData.currentSavedData.keyBindings["WaterKey"];
+        earthKey = GameData.currentSavedData.keyBindings["EarthKey"];
     }
 
     // Update is called once per frame
