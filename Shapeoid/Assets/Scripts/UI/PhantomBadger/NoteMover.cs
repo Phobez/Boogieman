@@ -76,7 +76,7 @@ public class NoteMover : MonoBehaviour
     // destroys note if it can
     protected virtual void CheckLocation()
     {
-        if (transform.position.x >= activator.transform.position.x - hitOffset && transform.position.x <= activator.transform.position.x + hitOffset)
+        if ((transform.position.x >= activator.transform.position.x - hitOffset && transform.position.x <= activator.transform.position.x + hitOffset) && (transform.position.y == activator.transform.position.y))
         {
             //Debug.Log("Checking location.");
             scoreHandler.SendMessage("AddScore");

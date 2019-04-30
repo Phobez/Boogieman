@@ -11,7 +11,7 @@ public class EmpoweredNoteMover : NoteMover
     // destroys note if it can
     protected override void CheckLocation()
     {
-        if (transform.position.x >= activator.transform.position.x - hitOffset && transform.position.x <= activator.transform.position.x + hitOffset)
+        if ((transform.position.x >= activator.transform.position.x - hitOffset && transform.position.x <= activator.transform.position.x + hitOffset) && (transform.position.y == activator.transform.position.y))
         {
             scoreHandler.SendMessage("AddPower");
             Destroy(this.gameObject);

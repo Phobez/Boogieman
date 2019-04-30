@@ -26,7 +26,7 @@ public class NoteGenerator : MonoBehaviour
     public GameObject middleLane;
     public GameObject topLane;
 
-    public float arrowSpeed = 0.0f;
+    public float noteSpeed = 0.0f;
 
     private bool isInit = false;
     private SongParser.Metadata songData;
@@ -57,7 +57,7 @@ public class NoteGenerator : MonoBehaviour
             // calculate time offset using s = d /t equation
             // (t = d / s)
             distance = originalDistance;
-            float _timeOffset = distance * arrowSpeed;
+            float _timeOffset = distance * noteSpeed;
             // Debug.Log("Distance: " + distance);
             // Debug.Log("Time Offset: " + _timeOffset);
 
@@ -124,8 +124,13 @@ public class NoteGenerator : MonoBehaviour
         distance = originalDistance;
         Debug.Log("distance: " + distance);
 
+        // TO-DO: Integrate note speed into song data
         // how fast the arrow will be going
-        arrowSpeed = 0.009f; // TEMPORARY MAGIC NUMBER
+        if (noteSpeed <= 0.0f)
+        {
+            noteSpeed = 0.009f;
+        }
+        // noteSpeed = 0.009f; // TEMPORARY MAGIC NUMBER
         noteData = songData.noteData;
     }
 
