@@ -23,7 +23,7 @@ public class SoundControl : MonoBehaviour
     public void SetSfxVolume(float sfxValue)
     {
         float value = Mathf.Log10(sfxValue) * 20;
-        musicMixer.SetFloat("SfxVol", value);
+        sfxMixer.SetFloat("SfxVol", value);
 
         PlayerPrefs.SetFloat("SfxVol", value);
     }
