@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Note : MonoBehaviour
+public class TimerNote : MonoBehaviour
 {
-    public enum Shape { IDLE, FIRE, AIR, WATER, EARTH };
-
-    public Shape shape;
+    public Note.Shape shape;
 
     public Sprite fireSprite;
     public Sprite airSprite;
@@ -15,9 +13,13 @@ public class Note : MonoBehaviour
 
     public float speed;
 
-    protected Rigidbody2D rb;
+    private Rigidbody2D rb;
 
-    protected SpriteRenderer sprRend;
+    private SpriteRenderer sprRend;
+
+    private float time = 0.0f;
+
+    private bool hasStoppedCounting = false;
 
     // Start is called before the first frame update
     private void Start()
@@ -25,27 +27,41 @@ public class Note : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         rb.velocity = new Vector2(-speed, 0f);
+        Debug.Log("START TIME: " + time);
 
         sprRend = GetComponent<SpriteRenderer>();
 
         switch (shape)
         {
-            case Shape.FIRE:
+            case Note.Shape.FIRE:
                 sprRend.sprite = fireSprite;
                 sprRend.color = Color.red;
                 break;
-            case Shape.AIR:
+            case Note.Shape.AIR:
                 sprRend.sprite = airSprite;
                 sprRend.color = Color.grey;
                 break;
-            case Shape.WATER:
+            case Note.Shape.WATER:
                 sprRend.sprite = waterSprite;
                 sprRend.color = Color.blue;
                 break;
-            case Shape.EARTH:
+            case Note.Shape.EARTH:
                 sprRend.sprite = earthSprite;
                 sprRend.color = Color.green;
                 break;
+        }
+    }
+
+    private void Update()
+    {
+        if (transform.position.x <= -4.0f && !hasStoppedCounting)
+        {
+            Debug.Log("END TIME: " + time);
+            hasStoppedCounting = true;
+        }
+        else if (!hasStoppedCounting)
+        {
+            time += Time.deltaTime;
         }
     }
 }
