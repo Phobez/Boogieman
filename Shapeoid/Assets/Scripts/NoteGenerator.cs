@@ -128,7 +128,7 @@ public class NoteGenerator : MonoBehaviour
         // how fast the arrow will be going
         if (noteSpeed <= 0.0f)
         {
-            noteSpeed = 0.009f;
+            noteSpeed = 0.05f;
         }
         // noteSpeed = 0.009f; // TEMPORARY MAGIC NUMBER
         noteData = songData.noteData;
