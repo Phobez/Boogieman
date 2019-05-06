@@ -27,6 +27,7 @@ public class NoteGenerator : MonoBehaviour
     public GameObject topLane;
 
     public float noteSpeed = 0.0f;
+    public float hitOffset = 0.075f;
 
     private bool isInit = false;
     private SongParser.Metadata songData;
