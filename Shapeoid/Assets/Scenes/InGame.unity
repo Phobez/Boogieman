@@ -2642,6 +2642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songController: {fileID: 769825985235223505}
   activatorController: {fileID: 769825985235223506}
+  noteGenerator: {fileID: 1494803395}
   pausePanel: {fileID: 1929495187}
 --- !u!4 &1494803392
 Transform:
@@ -2710,6 +2711,7 @@ MonoBehaviour:
   topLane: {fileID: 674900278}
   noteSpeed: 0
   hitOffset: 0.075
+  isPaused: 0
 --- !u!1 &1580266475
 GameObject:
   m_ObjectHideFlags: 0

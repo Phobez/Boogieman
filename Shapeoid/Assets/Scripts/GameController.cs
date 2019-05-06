@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
 {
     public SongController songController;
     public ActivatorController activatorController;
+    public NoteGenerator noteGenerator;
     public GameObject pausePanel;
 
     // Update is called once per frame
@@ -28,6 +29,7 @@ public class GameController : MonoBehaviour
         songController.PauseSong(true);
         Time.timeScale = 0.0f;
         activatorController.PauseActivator(true);
+        noteGenerator.PauseNotes(true);
         pausePanel.SetActive(true);
     }
 
@@ -39,5 +41,6 @@ public class GameController : MonoBehaviour
         songController.PauseSong(false);
         Time.timeScale = 1.0f;
         activatorController.PauseActivator(false);
+        noteGenerator.PauseNotes(false);
     }
 }

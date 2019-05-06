@@ -55,21 +55,24 @@ public class NoteMover : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        Vector3 _tempPos = transform.position;
-        _tempPos.x -= noteSpeed;
-        transform.position = _tempPos;
+        if (!noteGenerator.isPaused)
+        {
+            Vector3 _tempPos = transform.position;
+            _tempPos.x -= noteSpeed;
+            transform.position = _tempPos;
 
-        if (Input.GetKeyDown(keyToPress))
-        {
-            //Debug.Log("Key to Press if entered successfully.");
-            CheckLocation();
-        }
-        // missed
-        if (transform.position.x < activator.transform.position.x - hitOffset && !isDespawning)
-        {
-            GetComponent<Renderer>().material.SetColor("_Color", new Color(0.5f, 0.0f, 0.0f));
-            StartCoroutine(DespawnNote());
-            isDespawning = true;
+            if (Input.GetKeyDown(keyToPress))
+            {
+                //Debug.Log("Key to Press if entered successfully.");
+                CheckLocation();
+            }
+            // missed
+            if (transform.position.x < activator.transform.position.x - hitOffset && !isDespawning)
+            {
+                GetComponent<Renderer>().material.SetColor("_Color", new Color(0.5f, 0.0f, 0.0f));
+                StartCoroutine(DespawnNote());
+                isDespawning = true;
+            }
         }
     }
 

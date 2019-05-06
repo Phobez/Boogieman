@@ -28,6 +28,7 @@ public class NoteGenerator : MonoBehaviour
 
     public float noteSpeed = 0.0f;
     public float hitOffset = 0.075f;
+    public bool isPaused;
 
     private bool isInit = false;
     private SongParser.Metadata songData;
@@ -46,6 +47,8 @@ public class NoteGenerator : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         audioSource = player.GetComponent<AudioSource>();
+
+        isPaused = false;
     }
 
     // Update is called once per frame
@@ -204,5 +207,14 @@ public class NoteGenerator : MonoBehaviour
             default:
                 return false;
         }
+    }
+
+    /// <summary>
+    /// Pauses notes depending on _isPaused parameter.
+    /// </summary>
+    /// <param name="_isPaused"></param>
+    public void PauseNotes(bool _isPaused)
+    {
+        isPaused = _isPaused;
     }
 }
