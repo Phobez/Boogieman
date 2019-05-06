@@ -1170,7 +1170,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1366, y: 768}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -2709,7 +2709,7 @@ MonoBehaviour:
   middleLane: {fileID: 741301923}
   topLane: {fileID: 674900278}
   noteSpeed: 0
-  hitOffset: 0.075
+  hitOffset: 0.55
 --- !u!1 &1580266475
 GameObject:
   m_ObjectHideFlags: 0
