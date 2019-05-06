@@ -2708,7 +2708,7 @@ MonoBehaviour:
   bottomLane: {fileID: 1794603426}
   middleLane: {fileID: 741301923}
   topLane: {fileID: 674900278}
-  noteSpeed: 0
+  noteSpeed: 0.05
   hitOffset: 0.55
 --- !u!1 &1580266475
 GameObject:
