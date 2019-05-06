@@ -8,6 +8,7 @@ public class SongController : MonoBehaviour
 {
     private AudioSource audioSource;
     private bool songLoaded = false;
+    private bool isPaused;
 
     // Start is called before the first frame update
     private void Start()
@@ -17,12 +18,14 @@ public class SongController : MonoBehaviour
         SongParser.Metadata _metadata = GameData.chosenSongData;
 
         StartCoroutine(LoadTrack(_metadata.musicPath, _metadata));
+
+        isPaused = false;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (!audioSource.isPlaying && songLoaded)
+        if (!audioSource.isPlaying && songLoaded && !isPaused)
         {
             // song over
             UnityEngine.SceneManagement.SceneManager.LoadScene(1);
@@ -62,5 +65,23 @@ public class SongController : MonoBehaviour
 
         GameObject _controller = GameObject.FindGameObjectWithTag("GameController");
         _controller.GetComponent<NoteGenerator>().InitNotes(_metadata);
+    }
+
+    /// <summary>
+    /// Pauses or unpauses song depending on the _isPaused parameter.
+    /// </summary>
+    /// <param name="_isPaused"></param>
+    public void PauseSong(bool _isPaused)
+    {
+        if (_isPaused)
+        {
+            audioSource.Pause();
+            isPaused = true;
+        }
+        else
+        {
+            audioSource.UnPause();
+            isPaused = false;
+        }
     }
 }

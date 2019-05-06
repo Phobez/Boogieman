@@ -8,10 +8,8 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class LoadSceneOnKeyDown : MonoBehaviour
 {
-    [SerializeField]
-    private KeyCode keyToPress;
-    [SerializeField]
-    private int targetSceneIndex;
+    public KeyCode keyToPress;
+    public int targetSceneIndex;
 
     // Update is called once per frame
     private void Update()
