@@ -2696,7 +2696,7 @@ MonoBehaviour:
   airNote: {fileID: 6094591544609281910, guid: dc928c2fcc73a844191a6fc6290494e3, type: 3}
   waterNote: {fileID: 1333148977695135151, guid: 0348003ff8153c843a9caf1c4185d805,
     type: 3}
-  earthNote: {fileID: 8968576171789221283, guid: 82192b9f17851854584d29c919723360,
+  earthNote: {fileID: 8968576171789221283, guid: 881e0af107529cc419de22e695254e35,
     type: 3}
   empoweredFireNote: {fileID: 4507326306511292095, guid: d18bffdb5600a8a4c9c73cf622e22b99,
     type: 3}
@@ -2709,8 +2709,8 @@ MonoBehaviour:
   bottomLane: {fileID: 1794603426}
   middleLane: {fileID: 741301923}
   topLane: {fileID: 674900278}
-  noteSpeed: 0
-  hitOffset: 0.075
+  noteSpeed: 0.05
+  hitOffset: 0.55
   isPaused: 0
 --- !u!1 &1580266475
 GameObject:
