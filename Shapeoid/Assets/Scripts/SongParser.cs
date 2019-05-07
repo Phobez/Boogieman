@@ -18,15 +18,7 @@ public class SongParser
         Fire = 1,
         Air,
         Water,
-        Earth,
-        LongFireStart,
-        LongFireEnd,
-        LongAirStart,
-        LongAirEnd,
-        LongWaterStart,
-        LongWaterEnd,
-        LongEarthStart,
-        LongEarthEnd
+        Earth
     };
 
     private string filePath;

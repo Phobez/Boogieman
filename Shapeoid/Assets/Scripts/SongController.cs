@@ -28,7 +28,7 @@ public class SongController : MonoBehaviour
         if (!audioSource.isPlaying && songLoaded && !isPaused)
         {
             // song over
-            UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(4);
         }
     }
 

@@ -14,6 +14,7 @@ public class EmpoweredNoteMover : NoteMover
         if ((transform.position.x >= activator.transform.position.x - hitOffset && transform.position.x <= activator.transform.position.x + hitOffset) && (transform.position.y == activator.transform.position.y))
         {
             scoreHandler.SendMessage("AddPower");
+            GameData.currentSongStats.notesHit++;
             Destroy(this.gameObject);
         }
     }

@@ -84,6 +84,7 @@ public class NoteMover : MonoBehaviour
         {
             //Debug.Log("Checking location.");
             scoreHandler.SendMessage("AddScore");
+            GameData.currentSongStats.notesHit++;
             Destroy(this.gameObject);
         }
     }

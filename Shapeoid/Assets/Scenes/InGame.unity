@@ -3357,7 +3357,7 @@ MonoBehaviour:
   score: 0
   multiplier: 1
   power: 0
-  energy: 25
+  energy: 1000
   scoreText: {fileID: 1848491057}
   streakText: {fileID: 138523013}
   multiplierText: {fileID: 2021317024}
