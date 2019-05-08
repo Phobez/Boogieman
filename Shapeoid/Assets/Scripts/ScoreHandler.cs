@@ -23,6 +23,8 @@ public class ScoreHandler : MonoBehaviour
     private GameObject player;
     private int streak = 0;
 
+    private SongStatsHandler songStatsHandler;
+
     private const float scoreVal = 100.0f;
     private const int powerVal = 50;
 
@@ -32,6 +34,9 @@ public class ScoreHandler : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         songController = player.GetComponent<SongController>();
         audioSource = player.GetComponent<AudioSource>();
+
+        SongStatsHandler songStatsHandler = new SongStatsHandler();
+        songStatsHandler.ClearData(GameData.currentSongStats);
     }
 
     // Update is called once per frame
@@ -48,6 +53,7 @@ public class ScoreHandler : MonoBehaviour
     private void AddScore()
     {
         score += scoreVal * multiplier;
+        GameData.currentSongStats.totalScore = score;
         AddEnergy();
         AddStreak();
     }
@@ -79,6 +85,11 @@ public class ScoreHandler : MonoBehaviour
         else if (streak < 8)
         {
             multiplier = 1;
+        }
+
+        if (streak > GameData.currentSongStats.longestStreak)
+        {
+            GameData.currentSongStats.longestStreak = streak;
         }
     }
 

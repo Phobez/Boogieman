@@ -9,6 +9,7 @@ public static class GameData
     public static string songDirectory = "";
     public static SongParser.Metadata chosenSongData;
     public static SavedData currentSavedData;
+    public static SongStatsHandler.SongStats currentSongStats;
 }
 
 /// <summary>

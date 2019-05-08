@@ -15,7 +15,7 @@ public class NoteMover : MonoBehaviour
     protected ScoreHandler scoreHandler;
     protected bool isDespawning;
 
-    protected const float hitOffset = 0.075f;
+    protected float hitOffset;
     protected const float despawnTime = 1.5f;
 
     // Start is called before the first frame update
@@ -26,6 +26,9 @@ public class NoteMover : MonoBehaviour
         activator = GameObject.FindGameObjectWithTag("Player");
 
         isDespawning = false;
+
+        noteSpeed = noteGenerator.noteSpeed;
+        hitOffset = noteGenerator.hitOffset;
 
         switch (noteType)
         {
@@ -52,22 +55,24 @@ public class NoteMover : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        noteSpeed = noteGenerator.noteSpeed;
-        Vector3 _tempPos = transform.position;
-        _tempPos.x -= noteSpeed;
-        transform.position = _tempPos;
+        if (!noteGenerator.isPaused)
+        {
+            Vector3 _tempPos = transform.position;
+            _tempPos.x -= noteSpeed;
+            transform.position = _tempPos;
 
-        if (Input.GetKeyDown(keyToPress))
-        {
-            //Debug.Log("Key to Press if entered successfully.");
-            CheckLocation();
-        }
-        // missed
-        if (transform.position.x < activator.transform.position.x - hitOffset && !isDespawning)
-        {
-            GetComponent<Renderer>().material.SetColor("_Color", new Color(0.5f, 0.0f, 0.0f));
-            StartCoroutine(DespawnNote());
-            isDespawning = true;
+            if (Input.GetKeyDown(keyToPress))
+            {
+                //Debug.Log("Key to Press if entered successfully.");
+                CheckLocation();
+            }
+            // missed
+            if (transform.position.x < activator.transform.position.x - hitOffset && !isDespawning)
+            {
+                GetComponent<Renderer>().material.SetColor("_Color", new Color(0.5f, 0.0f, 0.0f));
+                StartCoroutine(DespawnNote());
+                isDespawning = true;
+            }
         }
     }
 
@@ -79,6 +84,7 @@ public class NoteMover : MonoBehaviour
         {
             //Debug.Log("Checking location.");
             scoreHandler.SendMessage("AddScore");
+            GameData.currentSongStats.notesHit++;
             Destroy(this.gameObject);
         }
     }

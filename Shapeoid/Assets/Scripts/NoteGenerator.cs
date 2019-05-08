@@ -27,6 +27,8 @@ public class NoteGenerator : MonoBehaviour
     public GameObject topLane;
 
     public float noteSpeed = 0.0f;
+    public float hitOffset = 0.075f;
+    public bool isPaused;
 
     private bool isInit = false;
     private SongParser.Metadata songData;
@@ -45,6 +47,8 @@ public class NoteGenerator : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         audioSource = player.GetComponent<AudioSource>();
+
+        isPaused = false;
     }
 
     // Update is called once per frame
@@ -92,16 +96,19 @@ public class NoteGenerator : MonoBehaviour
             if (IsThereNote(bar[i].bottom))
             {
                 GameObject _obj = (GameObject) Instantiate(GetNotePrefab(bar[i].bottom, true), new Vector3(bottomLane.transform.position.x + distance, bottomLane.transform.position.y, bottomLane.transform.position.z - 0.3f), Quaternion.identity);
+                GameData.currentSongStats.notesCounter++;
             }
             if (bar[i].middle != 0)
             {
                 // Debug.Log("Middle lane note.");
                 GameObject _obj = (GameObject) Instantiate(GetNotePrefab(bar[i].middle, false), new Vector3(middleLane.transform.position.x + distance, middleLane.transform.position.y, middleLane.transform.position.z - 0.3f), Quaternion.identity);
+                GameData.currentSongStats.notesCounter++;
             }
             if (bar[i].top != 0)
             {
                 // Debug.Log("Top lane note.");
                 GameObject _obj = (GameObject) Instantiate(GetNotePrefab(bar[i].top, true), new Vector3(topLane.transform.position.x + distance, topLane.transform.position.y, topLane.transform.position.z - 0.3f), Quaternion.identity);
+                GameData.currentSongStats.notesCounter++;
             }
 
             yield return new WaitForSeconds((barTime / bar.Count) - Time.deltaTime);
@@ -203,5 +210,14 @@ public class NoteGenerator : MonoBehaviour
             default:
                 return false;
         }
+    }
+
+    /// <summary>
+    /// Pauses notes depending on _isPaused parameter.
+    /// </summary>
+    /// <param name="_isPaused"></param>
+    public void PauseNotes(bool _isPaused)
+    {
+        isPaused = _isPaused;
     }
 }
