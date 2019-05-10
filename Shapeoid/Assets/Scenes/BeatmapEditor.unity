@@ -281,9 +281,9 @@ GameObject:
   - component: {fileID: 491145895}
   - component: {fileID: 491145894}
   - component: {fileID: 491145893}
-  - component: {fileID: 491145892}
   - component: {fileID: 491145891}
   - component: {fileID: 491145890}
+  - component: {fileID: 491145892}
   m_Layer: 0
   m_Name: Activator
   m_TagString: Player
@@ -331,12 +331,12 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491145889}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 2c02e35a82b43f347b97742e1f5ee812,
     type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 904382879}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -428,9 +428,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491145889}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4eead429901dbd45a3ea1ca77580c12, type: 3}
+  m_Script: {fileID: 11500000, guid: 20bffb606237f9647b6c60a4c7331b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &491145893
@@ -600,6 +600,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!83 &904382879
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: bikerace.mp3
+  m_LoadType: 0
+  m_Channels: 1
+  m_Frequency: 48000
+  m_BitsPerSample: 32
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!1 &1467419060
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,7 +738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39063061caf038448a23c535e611105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songController: {fileID: 491145892}
+  songController: {fileID: 0}
   activatorController: {fileID: 0}
   noteGenerator: {fileID: 1581656927}
   scoreHandler: {fileID: 1581656926}
