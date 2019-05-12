@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Test : MonoBehaviour
 {
@@ -15,13 +13,13 @@ public class Test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!audioSource.isPlaying)
-        {
-            Debug.Log("Audio not playing!");
-        }
-        else
-        {
-            Debug.Log("Playing: " + audioSource.time);
-        }
+        //if (!audioSource.isPlaying)
+        //{
+        //    Debug.Log("Audio not playing!");
+        //}
+        //else
+        //{
+        //    Debug.Log("Playing: " + audioSource.time);
+        //}
     }
 }

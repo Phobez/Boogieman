@@ -5,7 +5,11 @@ using UnityEngine;
 public class BeatmapRecorder : EditorWindow
 {
     private AudioSource audioSource;
+    private NoteRecorder noteRecorder;
     private AudioClip musicClip;
+
+    private SongParser.Metadata songData;
+
     private string songTitle;
     private string subtitle;
     private string artist;
@@ -35,6 +39,11 @@ public class BeatmapRecorder : EditorWindow
             if (EditorApplication.isPlaying)
             {
                 EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("Note Recorder");
+                noteRecorder = (NoteRecorder)EditorGUILayout.ObjectField(noteRecorder, typeof(NoteRecorder), true);
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField("Music File");
                 musicClip = (AudioClip)EditorGUILayout.ObjectField(musicClip, typeof(AudioClip), false);
                 EditorGUILayout.EndHorizontal();
@@ -54,7 +63,7 @@ public class BeatmapRecorder : EditorWindow
                     }
                 }
 
-                if (musicClip != null)
+                if (musicClip != null && noteRecorder != null)
                 {
                     DrawMNFileSettings();
 
@@ -62,7 +71,9 @@ public class BeatmapRecorder : EditorWindow
                     {
                         if (GUILayout.Button("Start Recording"))
                         {
+                            //songData = new SongParser.Metadata();
                             audioSource.Play();
+                            noteRecorder.InitRecording(songData);
                         }
                     }
                     else
@@ -72,7 +83,15 @@ public class BeatmapRecorder : EditorWindow
                 }
                 else
                 {
-                    EditorGUILayout.HelpBox("Load a music file to start recording.", MessageType.Info);
+                    if (musicClip == null)
+                    {
+                        EditorGUILayout.HelpBox("Load a music file to start recording.", MessageType.Info);
+                    }
+
+                    if (noteRecorder == null)
+                    {
+                        EditorGUILayout.HelpBox("A Note Recorder from the scene is required.", MessageType.Info);
+                    }
                 }
             }
             else
@@ -101,7 +120,7 @@ public class BeatmapRecorder : EditorWindow
     {
         EditorGUILayout.LabelField("Song Settings", EditorStyles.boldLabel);
 
-        EditorGUILayout.HelpBox("All song files (music, .mn, banner, and background) must be in the same directory!", MessageType.Warning);
+        EditorGUILayout.HelpBox("All song files (music, .mn, banner, and background) must be in the same directory!", MessageType.Info);
 
         EditorGUILayout.BeginVertical();
         songTitle = EditorGUILayout.TextField("Title", songTitle);
