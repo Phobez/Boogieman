@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NoteRecorder : MonoBehaviour
 {
+    public float noteSpeed = 0.009f;
+
     private bool isInit = false;
     private SongParser.Metadata songData;
     private float songTimer = 0.0f;
@@ -27,7 +29,7 @@ public class NoteRecorder : MonoBehaviour
 
     public void InitRecording(SongParser.Metadata _songData, string _targetPath)
     {
-        barTime = (60.0f / 91) * 4.0f;
+        barTime = (60.0f / _songData.bpm) * 4.0f;
 
         songData = _songData;
         targetPath = _targetPath;
@@ -43,9 +45,17 @@ public class NoteRecorder : MonoBehaviour
 
         while (audioSource.isPlaying)
         {
-            if (!isRecordingBar)
+            float _timeOffset = 10.0f / (noteSpeed / Time.deltaTime);
+
+            songTimer = audioSource.time;
+
+            Debug.Log(songTimer - _timeOffset);
+
+            if (!isRecordingBar && (songTimer - _timeOffset >= (barExecutedTime - barTime)))
             {
                 StartCoroutine(RecordBar());
+
+                barExecutedTime += barTime;
             }
 
             yield return null;
@@ -97,7 +107,29 @@ public class NoteRecorder : MonoBehaviour
 
         float _timer = 0.0f;
 
-        while (_timer <= (barTime / 4) - Time.deltaTime)
+        //while (_timer <= (barTime / 4) - Time.deltaTime)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.W))
+        //    {
+        //        AddNotes(ref _notes, SongParser.NoteType.Fire);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.A))
+        //    {
+        //        AddNotes(ref _notes, SongParser.NoteType.Air);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.D))
+        //    {
+        //        AddNotes(ref _notes, SongParser.NoteType.Water);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.S))
+        //    {
+        //        AddNotes(ref _notes, SongParser.NoteType.Earth);
+        //    }
+        //    _timer += Time.deltaTime;
+        //    yield return null;
+        //}
+
+        for (int i = 0; i < 4; i++)
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -115,8 +147,8 @@ public class NoteRecorder : MonoBehaviour
             {
                 AddNotes(ref _notes, SongParser.NoteType.Earth);
             }
-            _timer += Time.deltaTime;
-            yield return null;
+
+            yield return new WaitForSeconds((barTime / 4) - Time.deltaTime);
         }
 
         bar.Add(_notes);
