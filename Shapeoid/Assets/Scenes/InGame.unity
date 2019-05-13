@@ -3393,7 +3393,7 @@ MonoBehaviour:
   bottomLane: {fileID: 1794603426}
   middleLane: {fileID: 741301923}
   topLane: {fileID: 674900278}
-  noteSpeed: 0.05
+  noteSpeed: 0.009
   hitOffset: 0.55
   isPaused: 0
 --- !u!1 &1794603426
