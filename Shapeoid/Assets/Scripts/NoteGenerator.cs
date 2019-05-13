@@ -61,7 +61,8 @@ public class NoteGenerator : MonoBehaviour
             // calculate time offset using s = d /t equation
             // (t = d / s)
             distance = originalDistance;
-            float _timeOffset = distance * noteSpeed;
+            // float _timeOffset = distance * noteSpeed;
+            float _timeOffset = distance / (noteSpeed / Time.deltaTime);
             // Debug.Log("Distance: " + distance);
             // Debug.Log("Time Offset: " + _timeOffset);
 

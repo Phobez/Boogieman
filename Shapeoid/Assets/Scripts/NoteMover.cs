@@ -58,7 +58,8 @@ public class NoteMover : MonoBehaviour
         if (!noteGenerator.isPaused)
         {
             Vector3 _tempPos = transform.position;
-            _tempPos.x -= noteSpeed;
+            // _tempPos.x -= noteSpeed;
+            _tempPos.x -= (noteSpeed / Time.deltaTime);
             transform.position = _tempPos;
 
             if (Input.GetKeyDown(keyToPress))
