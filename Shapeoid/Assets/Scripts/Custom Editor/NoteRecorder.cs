@@ -14,6 +14,7 @@ public class NoteRecorder : MonoBehaviour
     private SongParser.NoteData noteData;
     private int barCount = 0;
 
+    private string targetPath;
     private bool isRecordingBar = false;
     private bool isRecordingNotes = false;
 
@@ -24,11 +25,12 @@ public class NoteRecorder : MonoBehaviour
         audioSource = player.GetComponent<AudioSource>();
     }
 
-    public void InitRecording(SongParser.Metadata _songData)
+    public void InitRecording(SongParser.Metadata _songData, string _targetPath)
     {
         barTime = (60.0f / 91) * 4.0f;
 
         songData = _songData;
+        targetPath = _targetPath;
 
         StartCoroutine(Record());
     }
@@ -50,7 +52,10 @@ public class NoteRecorder : MonoBehaviour
         }
 
         songData.noteData = this.noteData;
-        
+
+        SongWriter _songWriter = new SongWriter();
+        _songWriter.Write(songData, targetPath);
+
         yield break;
     }
 

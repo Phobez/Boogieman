@@ -55,11 +55,11 @@ public class BeatmapRecorder : EditorWindow
 
                 if (GUILayout.Button("Load Music"))
                 {
-                    string _musicPath = EditorUtility.OpenFilePanel("Load Music File", "", "mp3");
+                    musicPath = EditorUtility.OpenFilePanel("Load Music File", "", "mp3");
 
-                    if (_musicPath.Length != 0)
+                    if (musicPath.Length != 0)
                     {
-                        musicClip = LoadMusic(_musicPath);
+                        musicClip = LoadMusic(musicPath);
                     }
                 }
 
@@ -71,9 +71,22 @@ public class BeatmapRecorder : EditorWindow
                     {
                         if (GUILayout.Button("Start Recording"))
                         {
-                            //songData = new SongParser.Metadata();
+                            songData = new SongParser.Metadata();
+                            songData.title = songTitle;
+                            songData.subtitle = subtitle;
+                            songData.artist = artist;
+                            songData.bannerPath = bannerPath;
+                            songData.backgroundPath = backgroundPath;
+                            songData.musicPath = Path.GetFileName(musicPath);
+                            songData.offset = offset;
+                            songData.sampleStart = sampleStart;
+                            songData.sampleLength = sampleLength;
+                            songData.bpm = bpm;
+
+                            string _targetPath = musicPath.Replace(Path.GetFileName(musicPath), "");
+
                             audioSource.Play();
-                            noteRecorder.InitRecording(songData);
+                            noteRecorder.InitRecording(songData, _targetPath);
                         }
                     }
                     else
