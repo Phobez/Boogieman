@@ -1,11 +1,17 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEngine;
 
+/// <summary>
+/// A class to write the song data into an .mn file.
+/// </summary>
 public class SongWriter
 {
+    /// <summary>
+    /// Writes the .mn file using the provided song data.
+    /// </summary>
+    /// <param name="songData">Song data to write the notes to.</param>
+    /// <param name="targetPath">Target path to write the song to.</param>
     public void Write(SongParser.Metadata songData, string targetPath)
     {
         List<string> _fileData = new List<string>();
@@ -64,6 +70,11 @@ public class SongWriter
         File.WriteAllLines(targetPath, _fileData.ToArray());
     }
 
+    /// <summary>
+    /// Converts note data into .mn file-compatible format.
+    /// </summary>
+    /// <param name="noteData">The note data to convert.</param>
+    /// <returns>Converted note data.</returns>
     private List<string> WriteNotes(SongParser.NoteData noteData)
     {
         List<string> _fileDataNotes = new List<string>();

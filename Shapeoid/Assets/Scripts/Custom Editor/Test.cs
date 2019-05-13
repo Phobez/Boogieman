@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A component for testing.
+/// </summary>
 public class Test : MonoBehaviour
 {
     private AudioSource audioSource;

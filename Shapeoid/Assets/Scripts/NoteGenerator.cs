@@ -96,19 +96,19 @@ public class NoteGenerator : MonoBehaviour
             // Debug.Log("Placing bars.");
             if (IsThereNote(bar[i].bottom))
             {
-                GameObject _obj = (GameObject) Instantiate(GetNotePrefab(bar[i].bottom, true), new Vector3(bottomLane.transform.position.x + distance, bottomLane.transform.position.y, bottomLane.transform.position.z - 0.3f), Quaternion.identity);
+                GameObject _obj = (GameObject)Instantiate(GetNotePrefab(bar[i].bottom, true), new Vector3(bottomLane.transform.position.x + distance, bottomLane.transform.position.y, bottomLane.transform.position.z - 0.3f), Quaternion.identity);
                 GameData.currentSongStats.notesCounter++;
             }
             if (bar[i].middle != 0)
             {
                 // Debug.Log("Middle lane note.");
-                GameObject _obj = (GameObject) Instantiate(GetNotePrefab(bar[i].middle, false), new Vector3(middleLane.transform.position.x + distance, middleLane.transform.position.y, middleLane.transform.position.z - 0.3f), Quaternion.identity);
+                GameObject _obj = (GameObject)Instantiate(GetNotePrefab(bar[i].middle, false), new Vector3(middleLane.transform.position.x + distance, middleLane.transform.position.y, middleLane.transform.position.z - 0.3f), Quaternion.identity);
                 GameData.currentSongStats.notesCounter++;
             }
             if (bar[i].top != 0)
             {
                 // Debug.Log("Top lane note.");
-                GameObject _obj = (GameObject) Instantiate(GetNotePrefab(bar[i].top, true), new Vector3(topLane.transform.position.x + distance, topLane.transform.position.y, topLane.transform.position.z - 0.3f), Quaternion.identity);
+                GameObject _obj = (GameObject)Instantiate(GetNotePrefab(bar[i].top, true), new Vector3(topLane.transform.position.x + distance, topLane.transform.position.y, topLane.transform.position.z - 0.3f), Quaternion.identity);
                 GameData.currentSongStats.notesCounter++;
             }
 

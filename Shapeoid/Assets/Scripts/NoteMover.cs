@@ -44,9 +44,9 @@ public class NoteMover : MonoBehaviour
             case SongParser.NoteType.Earth:
                 keyToPress = GameData.currentSavedData.keyBindings["EarthKey"];
                 break;
-            //default:
-            //    keyToPress = KeyCode.W;
-            //    break;
+                //default:
+                //    keyToPress = KeyCode.W;
+                //    break;
         }
 
         // Debug.Log(keyToPress.ToString());

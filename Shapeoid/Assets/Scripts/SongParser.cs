@@ -1,8 +1,7 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
-using System;
+using System.Linq;
 using UnityEngine;
 
 // Made by      : Abia P.H.
@@ -13,7 +12,8 @@ public class SongParser
     // long notes have two components: a start and an ending
     // the start determines where the long note starts
     // the long note doesn't end until it encounters an end
-    public enum NoteType : byte {
+    public enum NoteType : byte
+    {
         // Idle,
         Fire = 1,
         Air,
@@ -265,17 +265,17 @@ public class SongParser
                 {
                     // Debug.Log(line[0]);
                     // Debug.Log(Convert.ToByte(line[0]));
-                    note.bottom = (NoteType) (Convert.ToByte(line[0]) - 48);
+                    note.bottom = (NoteType)(Convert.ToByte(line[0]) - 48);
                     // Debug.Log(note.bottom.ToString());
                     // Debug.Log(note.bottom);
                 }
                 if (line[1] != '0')
                 {
-                    note.middle = (NoteType) (Convert.ToByte(line[1]) - 48);
+                    note.middle = (NoteType)(Convert.ToByte(line[1]) - 48);
                 }
                 if (line[2] != '0')
                 {
-                    note.top = (NoteType) (Convert.ToByte(line[2]) - 48);
+                    note.top = (NoteType)(Convert.ToByte(line[2]) - 48);
                 }
 
                 // Debug.Log(note.top.ToString() + note.middle.ToString() + note.bottom.ToString());

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A component that records notes for a beatmap.
+/// </summary>
 public class NoteRecorder : MonoBehaviour
 {
     public float noteSpeed = 0.009f;
@@ -27,6 +30,11 @@ public class NoteRecorder : MonoBehaviour
         audioSource = player.GetComponent<AudioSource>();
     }
 
+    /// <summary>
+    /// Initialises and starts recording.
+    /// </summary>
+    /// <param name="_songData">Song data to write the notes to.</param>
+    /// <param name="_targetPath">Target path to write the song to.</param>
     public void InitRecording(SongParser.Metadata _songData, string _targetPath)
     {
         barTime = (60.0f / _songData.bpm) * 4.0f;
@@ -37,6 +45,9 @@ public class NoteRecorder : MonoBehaviour
         StartCoroutine(Record());
     }
 
+    /// <summary>
+    /// Records the song.
+    /// </summary>
     private IEnumerator Record()
     {
         Debug.Log("Recording begun.");
@@ -69,6 +80,9 @@ public class NoteRecorder : MonoBehaviour
         yield break;
     }
 
+    /// <summary>
+    /// Records a bar.
+    /// </summary>
     private IEnumerator RecordBar()
     {
         Debug.Log("New bar.");
@@ -95,6 +109,10 @@ public class NoteRecorder : MonoBehaviour
         yield break;
     }
 
+    /// <summary>
+    /// Records a single note line.
+    /// </summary>
+    /// <param name="bar">The bar that the note line belongs to.</param>
     private IEnumerator RecordNotes(List<SongParser.Notes> bar)
     {
         Debug.Log("New notes.");
@@ -105,8 +123,8 @@ public class NoteRecorder : MonoBehaviour
         _notes.middle = 0;
         _notes.bottom = 0;
 
-        float _timer = 0.0f;
-
+        // float _timer = 0.0f;
+        //
         //while (_timer <= (barTime / 4) - Time.deltaTime)
         //{
         //    if (Input.GetKeyDown(KeyCode.W))

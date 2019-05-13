@@ -2,6 +2,9 @@
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// An editor window to create new beatmaps.
+/// </summary>
 public class BeatmapRecorder : EditorWindow
 {
     private AudioSource audioSource;
@@ -21,6 +24,9 @@ public class BeatmapRecorder : EditorWindow
     private float sampleLength;
     private float bpm;
 
+    /// <summary>
+    /// Displays the window in the Tools tab.
+    /// </summary>
     [MenuItem("Tools/Beatmap Recorder")]
     public static void ShowWindow()
     {
@@ -118,6 +124,11 @@ public class BeatmapRecorder : EditorWindow
         }
     }
 
+    /// <summary>
+    /// Loads and converts music file to the proper format.
+    /// </summary>
+    /// <param name="path">Path to the music file.</param>
+    /// <returns>Converted music file.</returns>
     private AudioClip LoadMusic(string path)
     {
         string _url = string.Format("file://{0}", path);
@@ -129,6 +140,9 @@ public class BeatmapRecorder : EditorWindow
         return _musicClip;
     }
 
+    /// <summary>
+    /// Displays the setting fields for the .mn file setup.
+    /// </summary>
     private void DrawMNFileSettings()
     {
         EditorGUILayout.LabelField("Song Settings", EditorStyles.boldLabel);
@@ -186,6 +200,10 @@ public class BeatmapRecorder : EditorWindow
         EditorGUILayout.EndVertical();
     }
 
+    /// <summary>
+    /// Checks the validity of the .mn setup settings.
+    /// </summary>
+    /// <returns>True or false.</returns>
     private bool IsMNDataValid()
     {
         if (SongParser.IsNullOrWhiteSpace(songTitle))
