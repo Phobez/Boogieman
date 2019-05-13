@@ -84,7 +84,7 @@ public class NoteMover : MonoBehaviour
         if ((transform.position.x >= activator.transform.position.x - hitOffset && transform.position.x <= activator.transform.position.x + hitOffset) && (transform.position.y == activator.transform.position.y))
         {
             //Debug.Log("Checking location.");
-            scoreHandler.SendMessage("AddScore");
+            scoreHandler.SendMessage("AddScore", transform.position.x);
             GameData.currentSongStats.notesHit++;
             Destroy(this.gameObject);
         }

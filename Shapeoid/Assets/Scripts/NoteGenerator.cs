@@ -70,7 +70,7 @@ public class NoteGenerator : MonoBehaviour
             songTimer = audioSource.time;
             // Debug.Log("Song Timer: " + songTimer);
 
-            Debug.Log((songTimer - _timeOffset) + " >= " + (barExecutedTime - barTime));
+            //Debug.Log((songTimer - _timeOffset) + " >= " + (barExecutedTime - barTime));
             // if current song time - time offset is greater than
             // time taken for all executed bars so far
             // spawn the next bar's notes
