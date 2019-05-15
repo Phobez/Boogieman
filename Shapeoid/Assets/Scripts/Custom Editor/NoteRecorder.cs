@@ -22,6 +22,7 @@ public class NoteRecorder : MonoBehaviour
     private string targetPath;
     private bool isRecordingBar = false;
     private bool isRecordingNotes = false;
+    private bool canRecord = false;
 
     // Start is called before the first frame update
     private void Start()
@@ -60,13 +61,25 @@ public class NoteRecorder : MonoBehaviour
 
             songTimer = audioSource.time;
 
-            Debug.Log(songTimer - _timeOffset);
+            if (!canRecord && songTimer - _timeOffset >= (barExecutedTime - barTime))
+            {
+                canRecord = true;
+            }
 
-            if (!isRecordingBar && (songTimer - _timeOffset >= (barExecutedTime - barTime)))
+            // Debug.Log(songTimer - _timeOffset);
+
+            //if (!isRecordingBar && (songTimer - _timeOffset >= (barExecutedTime - barTime)))
+            //{
+            //    Debug.Log((songTimer - _timeOffset) + " >= " + (barExecutedTime - barTime));
+
+            //    StartCoroutine(RecordBar());
+
+            //    barExecutedTime += barTime;
+            //}
+
+            if (!isRecordingBar && canRecord)
             {
                 StartCoroutine(RecordBar());
-
-                barExecutedTime += barTime;
             }
 
             yield return null;
@@ -89,15 +102,15 @@ public class NoteRecorder : MonoBehaviour
         isRecordingBar = true;
         List<SongParser.Notes> _bar = new List<SongParser.Notes>();
 
-        int _barCounter = 0;
+        int _notesCounter = 0;
 
-        while (_barCounter < 4)
+        while (_notesCounter < 4)
         {
             if (!isRecordingNotes)
             {
                 StartCoroutine(RecordNotes(_bar));
                 Debug.Log("Record notes called.");
-                _barCounter++;
+                _notesCounter++;
             }
 
             yield return null;
@@ -123,31 +136,9 @@ public class NoteRecorder : MonoBehaviour
         _notes.middle = 0;
         _notes.bottom = 0;
 
-        // float _timer = 0.0f;
-        //
-        //while (_timer <= (barTime / 4) - Time.deltaTime)
-        //{
-        //    if (Input.GetKeyDown(KeyCode.W))
-        //    {
-        //        AddNotes(ref _notes, SongParser.NoteType.Fire);
-        //    }
-        //    else if (Input.GetKeyDown(KeyCode.A))
-        //    {
-        //        AddNotes(ref _notes, SongParser.NoteType.Air);
-        //    }
-        //    else if (Input.GetKeyDown(KeyCode.D))
-        //    {
-        //        AddNotes(ref _notes, SongParser.NoteType.Water);
-        //    }
-        //    else if (Input.GetKeyDown(KeyCode.S))
-        //    {
-        //        AddNotes(ref _notes, SongParser.NoteType.Earth);
-        //    }
-        //    _timer += Time.deltaTime;
-        //    yield return null;
-        //}
+        float _timer = 0.0f;
 
-        for (int i = 0; i < 4; i++)
+        while (_timer <= (barTime / 4) - Time.deltaTime)
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -165,9 +156,31 @@ public class NoteRecorder : MonoBehaviour
             {
                 AddNotes(ref _notes, SongParser.NoteType.Earth);
             }
-
-            yield return new WaitForSeconds((barTime / 4) - Time.deltaTime);
+            _timer += Time.deltaTime;
+            yield return null;
         }
+
+        //for (int i = 0; i < 4; i++)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.W))
+        //    {
+        //        AddNotes(ref _notes, SongParser.NoteType.Fire);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.A))
+        //    {
+        //        AddNotes(ref _notes, SongParser.NoteType.Air);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.D))
+        //    {
+        //        AddNotes(ref _notes, SongParser.NoteType.Water);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.S))
+        //    {
+        //        AddNotes(ref _notes, SongParser.NoteType.Earth);
+        //    }
+
+        //    yield return new WaitForSeconds((barTime / 4) - Time.deltaTime);
+        //}
 
         bar.Add(_notes);
 
