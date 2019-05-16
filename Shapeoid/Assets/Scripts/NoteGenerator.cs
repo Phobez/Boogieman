@@ -39,7 +39,7 @@ public class NoteGenerator : MonoBehaviour
     private AudioSource audioSource;
     private SongParser.NoteData noteData;
     private float distance;
-    private float originalDistance = 1.0f;
+    private float originalDistance = 10.0f;
     private int barCount = 0;
 
     // Start is called before the first frame update
@@ -61,7 +61,8 @@ public class NoteGenerator : MonoBehaviour
             // calculate time offset using s = d /t equation
             // (t = d / s)
             distance = originalDistance;
-            float _timeOffset = distance * noteSpeed;
+            // float _timeOffset = distance * noteSpeed;
+            float _timeOffset = distance / (noteSpeed / Time.deltaTime);
             // Debug.Log("Distance: " + distance);
             // Debug.Log("Time Offset: " + _timeOffset);
 
@@ -69,13 +70,13 @@ public class NoteGenerator : MonoBehaviour
             songTimer = audioSource.time;
             // Debug.Log("Song Timer: " + songTimer);
 
-            // Debug.Log((songTimer - _timeOffset) + " >= " + (barExecutedTime - barTime));
+            Debug.Log((songTimer - _timeOffset) + " >= " + (barExecutedTime - barTime));
             // if current song time - time offset is greater than
             // time taken for all executed bars so far
             // spawn the next bar's notes
             if (songTimer - _timeOffset >= (barExecutedTime - barTime))
             {
-                // Debug.Log("Current song time - time offset is greater than time taken for all executed bars so far.");
+                Debug.Log("Current song time - time offset is greater than time taken for all executed bars so far.");
                 StartCoroutine(PlaceBar(noteData.bars[barCount++]));
                 // Debug.Log("Bar Count: " + barCount);
 
