@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 /// <summary>
 /// A component that records notes for a beatmap.
 /// </summary>
 public class NoteRecorder : MonoBehaviour
 {
+    public TMP_Text promptText;
+
     public float noteSpeed = 0.009f;
 
     private bool isInit = false;
     private SongParser.Metadata songData;
-    private float songTimer = 0.0f;
+    // private float songTimer = 0.0f;
     private float barTime = 0.0f;
     private float barExecutedTime = 0.0f;
     private GameObject player;
@@ -44,6 +47,8 @@ public class NoteRecorder : MonoBehaviour
         targetPath = _targetPath;
 
         StartCoroutine(Record());
+
+        promptText.text = "RECORDING";
     }
 
     /// <summary>
@@ -51,15 +56,15 @@ public class NoteRecorder : MonoBehaviour
     /// </summary>
     private IEnumerator Record()
     {
-        Debug.Log("Recording begun.");
+        // Debug.Log("Recording begun.");
         noteData = new SongParser.NoteData();
         noteData.bars = new List<List<SongParser.Notes>>();
 
         while (audioSource.isPlaying)
         {
-            float _timeOffset = 10.0f / (noteSpeed / Time.deltaTime);
+            // float _timeOffset = 10.0f / (noteSpeed / Time.deltaTime);
 
-            songTimer = audioSource.time;
+            // songTimer = audioSource.time;
 
             //if (!canRecord && songTimer - _timeOffset >= (barExecutedTime - barTime))
             //{
@@ -90,6 +95,7 @@ public class NoteRecorder : MonoBehaviour
         SongWriter _songWriter = new SongWriter();
         _songWriter.Write(songData, targetPath);
 
+        promptText.text = "RECORDING FINISHED";
         yield break;
     }
 
@@ -98,7 +104,7 @@ public class NoteRecorder : MonoBehaviour
     /// </summary>
     private IEnumerator RecordBar()
     {
-        Debug.Log("New bar.");
+        // Debug.Log("New bar.");
         isRecordingBar = true;
         List<SongParser.Notes> _bar = new List<SongParser.Notes>();
 
@@ -109,7 +115,7 @@ public class NoteRecorder : MonoBehaviour
             if (!isRecordingNotes)
             {
                 StartCoroutine(RecordNotes(_bar));
-                Debug.Log("Record notes called.");
+                // Debug.Log("Record notes called.");
                 _notesCounter++;
             }
 
@@ -128,7 +134,7 @@ public class NoteRecorder : MonoBehaviour
     /// <param name="bar">The bar that the note line belongs to.</param>
     private IEnumerator RecordNotes(List<SongParser.Notes> bar)
     {
-        Debug.Log("New notes.");
+        // Debug.Log("New notes.");
         isRecordingNotes = true;
         SongParser.Notes _notes = new SongParser.Notes();
 
