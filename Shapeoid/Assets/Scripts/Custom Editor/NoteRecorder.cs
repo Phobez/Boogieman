@@ -61,10 +61,10 @@ public class NoteRecorder : MonoBehaviour
 
             songTimer = audioSource.time;
 
-            if (!canRecord && songTimer - _timeOffset >= (barExecutedTime - barTime))
-            {
-                canRecord = true;
-            }
+            //if (!canRecord && songTimer - _timeOffset >= (barExecutedTime - barTime))
+            //{
+            //    canRecord = true;
+            //}
 
             // Debug.Log(songTimer - _timeOffset);
 
@@ -77,7 +77,7 @@ public class NoteRecorder : MonoBehaviour
             //    barExecutedTime += barTime;
             //}
 
-            if (!isRecordingBar && canRecord)
+            if (!isRecordingBar)
             {
                 StartCoroutine(RecordBar());
             }
