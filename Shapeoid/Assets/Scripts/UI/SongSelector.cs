@@ -76,6 +76,13 @@ public class SongSelector : MonoBehaviour
                 entry.callback.AddListener(eventData => { if (_songData.musicPath != currentSongPath) { StartCoroutine(PreviewTrack(_songData.musicPath)); } });
 
                 _songButton.GetComponent<EventTrigger>().triggers.Add(entry);
+
+                // check if a highscore for this song exists
+                // if not, create it
+                if (!GameData.currentSavedData.highscores.ContainsKey(_songData.title))
+                {
+                    GameData.currentSavedData.highscores.Add(_songData.title, 0.0f);
+                }
             }
         }
     }

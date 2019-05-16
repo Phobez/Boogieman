@@ -19,6 +19,7 @@ public static class GameData
 public class SavedData
 {
     public Dictionary<string, KeyCode> keyBindings;
+    public Dictionary<string, float> highscores;
 
     public SavedData()
     {
@@ -28,5 +29,7 @@ public class SavedData
         keyBindings.Add("AirKey", KeyCode.A);
         keyBindings.Add("WaterKey", KeyCode.D);
         keyBindings.Add("EarthKey", KeyCode.S);
+
+        highscores = new Dictionary<string, float>();
     }
 }
