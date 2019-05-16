@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// A component which controls Activator behaviour.
+/// </summary>
 public class ActivatorController : MonoBehaviour
 {
     public Sprite idleSprite;
@@ -11,14 +12,15 @@ public class ActivatorController : MonoBehaviour
     public Sprite earthSprite;
 
     private SpriteRenderer sprRend;
-    private KeyCode fireKey;
-    private KeyCode airKey;
-    private KeyCode waterKey;
-    private KeyCode earthKey;
-    private bool isPaused;
+
+    protected KeyCode fireKey;
+    protected KeyCode airKey;
+    protected KeyCode waterKey;
+    protected KeyCode earthKey;
+    protected bool isPaused;
 
     // Start is called before the first frame update
-    private void Start()
+    protected virtual void Start()
     {
         sprRend = GetComponent<SpriteRenderer>();
 
@@ -33,7 +35,7 @@ public class ActivatorController : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    protected virtual void Update()
     {
         if (!isPaused)
         {
@@ -89,7 +91,7 @@ public class ActivatorController : MonoBehaviour
     /// <summary>
     /// Sets the value of isPaused to the _isPaused parameter.
     /// </summary>
-    /// <param name="_isPaused"></param>
+    /// <param name="_isPaused">The value for the Activator's isPaused boolean variable.</param>
     public void PauseActivator(bool _isPaused)
     {
         isPaused = _isPaused;

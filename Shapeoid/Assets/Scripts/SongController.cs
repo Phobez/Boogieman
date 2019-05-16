@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Networking;
 
 // Made by      : Abia Herlianto
 // Description  : loads and plays the song and manages scene change.
