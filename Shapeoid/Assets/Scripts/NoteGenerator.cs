@@ -28,8 +28,8 @@ public class NoteGenerator : MonoBehaviour
 
     public float noteSpeed = 0.0f;
     public float hitOffset = 0.075f;
-    public float greatHitOffset;
-    public float perfectHitOffset;
+    public float greatHitOffset = 0.1f;
+    public float perfectHitOffset = 0.25f;
     public bool isPaused;
 
     private bool isInit = false;
@@ -50,8 +50,8 @@ public class NoteGenerator : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         audioSource = player.GetComponent<AudioSource>();
 
-        greatHitOffset = hitOffset - 0.1f;
-        perfectHitOffset = hitOffset - 0.25f;
+        greatHitOffset = hitOffset - greatHitOffset;
+        perfectHitOffset = hitOffset - perfectHitOffset;
 
         isPaused = false;
     }
@@ -81,7 +81,7 @@ public class NoteGenerator : MonoBehaviour
             // spawn the next bar's notes
             if (songTimer - _timeOffset >= (barExecutedTime - barTime))
             {
-                Debug.Log("Current song time - time offset is greater than time taken for all executed bars so far.");
+                // Debug.Log("Current song time - time offset is greater than time taken for all executed bars so far.");
                 StartCoroutine(PlaceBar(noteData.bars[barCount++]));
                 // Debug.Log("Bar Count: " + barCount);
 

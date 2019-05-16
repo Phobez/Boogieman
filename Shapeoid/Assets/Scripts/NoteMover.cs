@@ -48,9 +48,9 @@ public class NoteMover : MonoBehaviour
             case SongParser.NoteType.Earth:
                 keyToPress = GameData.currentSavedData.keyBindings["EarthKey"];
                 break;
-            //default:
-            //    keyToPress = KeyCode.W;
-            //    break;
+                //default:
+                //    keyToPress = KeyCode.W;
+                //    break;
         }
 
         // Debug.Log(keyToPress.ToString());
@@ -114,6 +114,7 @@ public class NoteMover : MonoBehaviour
 
         if (_isHit)
         {
+            // Debug.Log("Accuracy Multiplier: " + _accuracyMultiplier);
             scoreHandler.SendMessage("AddScore", _accuracyMultiplier);
             GameData.currentSongStats.notesHit++;
             Destroy(this.gameObject);

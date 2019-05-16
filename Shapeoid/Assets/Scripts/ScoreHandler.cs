@@ -45,9 +45,9 @@ public class ScoreHandler : MonoBehaviour
         SongStatsHandler songStatsHandler = new SongStatsHandler();
         songStatsHandler.ClearData(GameData.currentSongStats);
 
-        hitOffset = noteGenerator.hitOffset;
-        perfectOffset = hitOffset - 0.1f;
-        greatOffset = hitOffset - 0.25f;
+        //hitOffset = noteGenerator.hitOffset;
+        //perfectOffset = hitOffset - 0.1f;
+        //greatOffset = hitOffset - 0.25f;
     }
 
     // Update is called once per frame
@@ -76,7 +76,7 @@ public class ScoreHandler : MonoBehaviour
         //    accuracyMultiplier = 1f;
         //}
         score += scoreVal * multiplier * accuracyMultiplier;
-        Debug.Log(accuracyMultiplier);
+        // Debug.Log(accuracyMultiplier);
         GameData.currentSongStats.totalScore = score;
         AddEnergy();
         AddStreak();
