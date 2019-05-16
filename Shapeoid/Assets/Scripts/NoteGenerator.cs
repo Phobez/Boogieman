@@ -28,6 +28,8 @@ public class NoteGenerator : MonoBehaviour
 
     public float noteSpeed = 0.0f;
     public float hitOffset = 0.075f;
+    public float greatHitOffset;
+    public float perfectHitOffset;
     public bool isPaused;
 
     private bool isInit = false;
@@ -47,6 +49,9 @@ public class NoteGenerator : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         audioSource = player.GetComponent<AudioSource>();
+
+        greatHitOffset = hitOffset - 0.1f;
+        perfectHitOffset = hitOffset - 0.25f;
 
         isPaused = false;
     }

@@ -24,10 +24,10 @@ public class ScoreHandler : MonoBehaviour
     private NoteGenerator noteGenerator;
     private GameObject player;
     private int streak = 0;
-    private float perfectOffset;
-    private float greatOffset;
-    private float accuracyMultiplier;
-    private float hitOffset;
+    //private float perfectOffset;
+    //private float greatOffset;
+    //private float accuracyMultiplier;
+    //private float hitOffset;
 
     private SongStatsHandler songStatsHandler;
 
@@ -61,20 +61,20 @@ public class ScoreHandler : MonoBehaviour
     }
 
     // adds score by scoreVal times the current value of multiplier
-    private void AddScore(float notePos)
+    private void AddScore(float accuracyMultiplier)
     {
-        if(notePos >= player.transform.position.x - hitOffset + perfectOffset && notePos <= player.transform.position.x + hitOffset - perfectOffset)
-        {
-            accuracyMultiplier = 1.2f;   
-        }
-        else if (notePos >= player.transform.position.x - hitOffset + greatOffset && notePos <= player.transform.position.x + hitOffset - greatOffset)
-        {
-            accuracyMultiplier = 1.1f;
-        }
-        else if (notePos >= player.transform.position.x - hitOffset && notePos <= player.transform.position.x + hitOffset)
-        {
-            accuracyMultiplier = 1f;
-        }
+        //if(notePos >= player.transform.position.x - hitOffset + perfectOffset && notePos <= player.transform.position.x + hitOffset - perfectOffset)
+        //{
+        //    accuracyMultiplier = 1.2f;   
+        //}
+        //else if (notePos >= player.transform.position.x - hitOffset + greatOffset && notePos <= player.transform.position.x + hitOffset - greatOffset)
+        //{
+        //    accuracyMultiplier = 1.1f;
+        //}
+        //else if (notePos >= player.transform.position.x - hitOffset && notePos <= player.transform.position.x + hitOffset)
+        //{
+        //    accuracyMultiplier = 1f;
+        //}
         score += scoreVal * multiplier * accuracyMultiplier;
         Debug.Log(accuracyMultiplier);
         GameData.currentSongStats.totalScore = score;
