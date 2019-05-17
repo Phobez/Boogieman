@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
 /// Handles score, power, and energy.
@@ -12,11 +10,16 @@ public class ScoreHandler : MonoBehaviour
     public int multiplier = 1;
     public int power = 0;
     public int energy = 25;
-    public Text scoreText;
-    public Text streakText;
-    public Text multiplierText;
-    public Text powerText;
-    public Text energyText;
+    //public Text scoreText;
+    //public Text streakText;
+    //public Text multiplierText;
+    //public Text powerText;
+    //public Text energyText;
+    public TMP_Text scoreText;
+    public TMP_Text streakText;
+    public TMP_Text multiplierText;
+    public TMP_Text powerText;
+    public TMP_Text energyText;
 
 
     private SongController songController;
