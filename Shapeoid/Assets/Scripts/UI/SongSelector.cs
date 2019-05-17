@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
+using TMPro;
 
 // Made by      : Abia Herlianto
 // Description  : Handles the reading of songs from the proper directory as
@@ -54,7 +55,7 @@ public class SongSelector : MonoBehaviour
             else
             {
                 GameObject _songObj = (GameObject)Instantiate(songSelectionPrefab, songSelectionList.transform.position, Quaternion.identity);
-                _songObj.GetComponentInChildren<Text>().text = _songData.title + " - " + _songData.artist;
+                _songObj.GetComponentInChildren<TMP_Text>().text = _songData.title + " - " + _songData.artist;
                 // _songObj.transform.parent = songSelectionList.transform;
                 _songObj.transform.SetParent(songSelectionList.transform, false);
                 _songObj.transform.localScale = new Vector3(1, 1, 1); // reset scale just in case scale changes
@@ -83,6 +84,8 @@ public class SongSelector : MonoBehaviour
                 {
                     GameData.currentSavedData.highscores.Add(_songData.title, 0.0f);
                 }
+
+                _songObj.GetComponentInChildren<TMP_Text>().text += string.Format("{0}Highscore: {1}", '\n', GameData.currentSavedData.highscores[_songData.title]);
             }
         }
     }
