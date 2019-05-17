@@ -16,6 +16,8 @@ public class NoteMover : MonoBehaviour
     protected bool isDespawning;
 
     protected float hitOffset;
+    protected float greatHitOffset;
+    protected float perfectHitOffset;
     protected const float despawnTime = 1.5f;
 
     // Start is called before the first frame update
@@ -29,6 +31,8 @@ public class NoteMover : MonoBehaviour
 
         noteSpeed = noteGenerator.noteSpeed;
         hitOffset = noteGenerator.hitOffset;
+        greatHitOffset = noteGenerator.greatHitOffset;
+        perfectHitOffset = noteGenerator.perfectHitOffset;
 
         switch (noteType)
         {
@@ -44,9 +48,9 @@ public class NoteMover : MonoBehaviour
             case SongParser.NoteType.Earth:
                 keyToPress = GameData.currentSavedData.keyBindings["EarthKey"];
                 break;
-            //default:
-            //    keyToPress = KeyCode.W;
-            //    break;
+                //default:
+                //    keyToPress = KeyCode.W;
+                //    break;
         }
 
         // Debug.Log(keyToPress.ToString());
@@ -81,10 +85,37 @@ public class NoteMover : MonoBehaviour
     // destroys note if it can
     protected virtual void CheckLocation()
     {
-        if ((transform.position.x >= activator.transform.position.x - hitOffset && transform.position.x <= activator.transform.position.x + hitOffset) && (transform.position.y == activator.transform.position.y))
+        //if ((transform.position.x >= activator.transform.position.x - hitOffset && transform.position.x <= activator.transform.position.x + hitOffset) && (transform.position.y == activator.transform.position.y))
+        //{
+        //    //Debug.Log("Checking location.");
+        //    scoreHandler.SendMessage("AddScore", transform.position.x);
+        //    GameData.currentSongStats.notesHit++;
+        //    Destroy(this.gameObject);
+        //}
+
+        bool _isHit = false;
+        float _accuracyMultiplier = 1.0f;
+
+        if (transform.position.x >= activator.transform.position.x - hitOffset + perfectHitOffset && transform.position.x <= activator.transform.position.x + hitOffset - perfectHitOffset)
         {
-            //Debug.Log("Checking location.");
-            scoreHandler.SendMessage("AddScore");
+            _accuracyMultiplier = 1.2f;
+            _isHit = true;
+        }
+        else if (transform.position.x >= activator.transform.position.x - hitOffset + greatHitOffset && transform.position.x <= activator.transform.position.x + hitOffset - greatHitOffset)
+        {
+            _accuracyMultiplier = 1.1f;
+            _isHit = true;
+        }
+        else if (transform.position.x >= activator.transform.position.x - hitOffset && transform.position.x <= activator.transform.position.x + hitOffset)
+        {
+            _accuracyMultiplier = 1f;
+            _isHit = true;
+        }
+
+        if (_isHit)
+        {
+            // Debug.Log("Accuracy Multiplier: " + _accuracyMultiplier);
+            scoreHandler.SendMessage("AddScore", _accuracyMultiplier);
             GameData.currentSongStats.notesHit++;
             Destroy(this.gameObject);
         }
