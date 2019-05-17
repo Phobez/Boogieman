@@ -21,6 +21,14 @@ public class MainMenuHandler : MonoBehaviour
         GameData.songDirectory = _songDirectory;
 
         // loads saved data
-        SaveLoad.Load();
+        if (GameData.currentSavedData == null)
+        {
+            SaveLoad.Load();
+        }
+        else
+        {
+            SaveLoad.Save();
+        }
+        Debug.Log(GameData.currentSavedData.highscores.Count);
     }
 }

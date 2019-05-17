@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
+using TMPro;
 
 // Made by      : Abia Herlianto
 // Description  : Handles the reading of songs from the proper directory as
@@ -54,7 +55,7 @@ public class SongSelector : MonoBehaviour
             else
             {
                 GameObject _songObj = (GameObject)Instantiate(songSelectionPrefab, songSelectionList.transform.position, Quaternion.identity);
-                _songObj.GetComponentInChildren<Text>().text = _songData.title + " - " + _songData.artist;
+                _songObj.GetComponentInChildren<TMP_Text>().text = _songData.title + " - " + _songData.artist;
                 // _songObj.transform.parent = songSelectionList.transform;
                 _songObj.transform.SetParent(songSelectionList.transform, false);
                 _songObj.transform.localScale = new Vector3(1, 1, 1); // reset scale just in case scale changes
@@ -76,6 +77,15 @@ public class SongSelector : MonoBehaviour
                 entry.callback.AddListener(eventData => { if (_songData.musicPath != currentSongPath) { StartCoroutine(PreviewTrack(_songData.musicPath)); } });
 
                 _songButton.GetComponent<EventTrigger>().triggers.Add(entry);
+
+                // check if a highscore for this song exists
+                // if not, create it
+                if (!GameData.currentSavedData.highscores.ContainsKey(_songData.title))
+                {
+                    GameData.currentSavedData.highscores.Add(_songData.title, 0.0f);
+                }
+
+                _songObj.GetComponentInChildren<TMP_Text>().text += string.Format("{0}Highscore: {1}", '\n', GameData.currentSavedData.highscores[_songData.title]);
             }
         }
     }
