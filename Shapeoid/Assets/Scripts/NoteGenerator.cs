@@ -28,6 +28,8 @@ public class NoteGenerator : MonoBehaviour
 
     public float noteSpeed = 0.0f;
     public float hitOffset = 0.075f;
+    public float greatHitOffset = 0.1f;
+    public float perfectHitOffset = 0.25f;
     public bool isPaused;
 
     private bool isInit = false;
@@ -39,14 +41,20 @@ public class NoteGenerator : MonoBehaviour
     private AudioSource audioSource;
     private SongParser.NoteData noteData;
     private float distance;
-    private float originalDistance = 1.0f;
+    private float originalDistance = 10.0f;
     private int barCount = 0;
+
+    private float offsetSongTimer = 0.0f;
+    private bool isPlacingBar = false;
 
     // Start is called before the first frame update
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         audioSource = player.GetComponent<AudioSource>();
+
+        greatHitOffset = hitOffset - greatHitOffset;
+        perfectHitOffset = hitOffset - perfectHitOffset;
 
         isPaused = false;
     }
@@ -61,27 +69,58 @@ public class NoteGenerator : MonoBehaviour
             // calculate time offset using s = d /t equation
             // (t = d / s)
             distance = originalDistance;
-            float _timeOffset = distance * noteSpeed;
-            // Debug.Log("Distance: " + distance);
-            // Debug.Log("Time Offset: " + _timeOffset);
+            // float _timeOffset = distance * noteSpeed;
+            float _timeOffset = distance / (noteSpeed / Time.deltaTime);
 
             // get current time through song
             songTimer = audioSource.time;
-            // Debug.Log("Song Timer: " + songTimer);
 
-            // Debug.Log((songTimer - _timeOffset) + " >= " + (barExecutedTime - barTime));
+            //if (barCount == 0)
+            //{
+            //    barExecutedTime = songTimer - _timeOffset;
+            //}
+
+            //// if current song time - time offset is greater than
+            //// time taken for all executed bars so far
+            //// spawn the next bar's notes
+            //if (songTimer - _timeOffset >= (barExecutedTime - barTime))
+            //{
+            //    if (!isPlacingBar)
+            //    {
+            //        StartCoroutine(PlaceBar(noteData.bars[barCount++]));
+
+            //        barExecutedTime += barTime;
+            //    }
+
+            //    Debug.Log(barCount);
+            //}
+
+            offsetSongTimer += Time.deltaTime;
+
+            if (barCount == 0)
+            {
+                offsetSongTimer = songTimer - _timeOffset;
+                Debug.Log("Start Offset: " + offsetSongTimer);
+            }
+
             // if current song time - time offset is greater than
             // time taken for all executed bars so far
             // spawn the next bar's notes
-            if (songTimer - _timeOffset >= (barExecutedTime - barTime))
+            if (songTimer - _timeOffset >= offsetSongTimer)
             {
-                // Debug.Log("Current song time - time offset is greater than time taken for all executed bars so far.");
-                StartCoroutine(PlaceBar(noteData.bars[barCount++]));
-                // Debug.Log("Bar Count: " + barCount);
+                if (!isPlacingBar)
+                {
+                    StartCoroutine(PlaceBar(noteData.bars[barCount++]));
 
-                barExecutedTime += barTime;
-                // Debug.Log("Bar Executed Time: " + barExecutedTime);
+                    // barExecutedTime += barTime;
+                }
+
+                Debug.Log("Bar Count: " + barCount);
             }
+
+            Debug.Log("Offset Song Timer: " + offsetSongTimer);
+
+            // Debug.Log(barExecutedTime);
         }
     }
 
@@ -90,29 +129,30 @@ public class NoteGenerator : MonoBehaviour
     // depending on which note is meant to be spawned
     private IEnumerator PlaceBar(List<SongParser.Notes> bar)
     {
+        isPlacingBar = true;
+
         for (int i = 0; i < bar.Count; i++)
         {
-            // Debug.Log("Placing bars.");
             if (IsThereNote(bar[i].bottom))
             {
-                GameObject _obj = (GameObject) Instantiate(GetNotePrefab(bar[i].bottom, true), new Vector3(bottomLane.transform.position.x + distance, bottomLane.transform.position.y, bottomLane.transform.position.z - 0.3f), Quaternion.identity);
+                GameObject _obj = (GameObject)Instantiate(GetNotePrefab(bar[i].bottom, true), new Vector3(bottomLane.transform.position.x + distance, bottomLane.transform.position.y, bottomLane.transform.position.z - 0.3f), Quaternion.identity);
                 GameData.currentSongStats.notesCounter++;
             }
             if (bar[i].middle != 0)
             {
-                // Debug.Log("Middle lane note.");
-                GameObject _obj = (GameObject) Instantiate(GetNotePrefab(bar[i].middle, false), new Vector3(middleLane.transform.position.x + distance, middleLane.transform.position.y, middleLane.transform.position.z - 0.3f), Quaternion.identity);
+                GameObject _obj = (GameObject)Instantiate(GetNotePrefab(bar[i].middle, false), new Vector3(middleLane.transform.position.x + distance, middleLane.transform.position.y, middleLane.transform.position.z - 0.3f), Quaternion.identity);
                 GameData.currentSongStats.notesCounter++;
             }
             if (bar[i].top != 0)
             {
-                // Debug.Log("Top lane note.");
-                GameObject _obj = (GameObject) Instantiate(GetNotePrefab(bar[i].top, true), new Vector3(topLane.transform.position.x + distance, topLane.transform.position.y, topLane.transform.position.z - 0.3f), Quaternion.identity);
+                GameObject _obj = (GameObject)Instantiate(GetNotePrefab(bar[i].top, true), new Vector3(topLane.transform.position.x + distance, topLane.transform.position.y, topLane.transform.position.z - 0.3f), Quaternion.identity);
                 GameData.currentSongStats.notesCounter++;
             }
 
             yield return new WaitForSeconds((barTime / bar.Count) - Time.deltaTime);
         }
+
+        isPlacingBar = false;
     }
 
     // iniatialises variables and sets arrow speed
@@ -120,22 +160,22 @@ public class NoteGenerator : MonoBehaviour
     {
         songData = newSongData;
         isInit = true;
-        Debug.Log("isInit set to: " + isInit);
+        // Debug.Log("isInit set to: " + isInit);
 
         // estimate how many seconds a single 'bar' will be in the
         // song using the bpm in song data
-        Debug.Log("BPM: " + songData.bpm);
+        // Debug.Log("BPM: " + songData.bpm);
         barTime = (60.0f / songData.bpm) * 4.0f;
         Debug.Log("barTime: " + barTime);
 
         distance = originalDistance;
-        Debug.Log("distance: " + distance);
+        // Debug.Log("distance: " + distance);
 
         // TO-DO: Integrate note speed into song data
         // how fast the arrow will be going
         if (noteSpeed <= 0.0f)
         {
-            noteSpeed = 0.009f;
+            noteSpeed = 0.05f;
         }
         // noteSpeed = 0.009f; // TEMPORARY MAGIC NUMBER
         noteData = songData.noteData;
