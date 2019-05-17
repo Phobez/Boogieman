@@ -16,6 +16,11 @@ public class PostGameController : MonoBehaviour
     {
         totalScoreText.text = GameData.currentSongStats.totalScore.ToString();
 
+        if (GameData.currentSongStats.totalScore > GameData.currentSavedData.highscores[GameData.chosenSongData.title])
+        {
+            GameData.currentSavedData.highscores[GameData.chosenSongData.title] = GameData.currentSongStats.totalScore;
+        }
+
         float _notesHitPercentage = (float)GameData.currentSongStats.notesHit / (float)GameData.currentSongStats.notesCounter * 100.0f;
         _notesHitPercentage = (float) Math.Round(_notesHitPercentage, 2);
 
