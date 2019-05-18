@@ -1388,7 +1388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: {fileID: 510486064}
-  noteSpeed: 0.009
+  noteSpeed: 0.0023
 --- !u!1 &1742089535
 GameObject:
   m_ObjectHideFlags: 0

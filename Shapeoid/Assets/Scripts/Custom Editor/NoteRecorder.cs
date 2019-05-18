@@ -10,7 +10,7 @@ public class NoteRecorder : MonoBehaviour
 {
     public TMP_Text promptText;
 
-    public float noteSpeed = 0.009f;
+    public float noteSpeed = 0.0023f;
 
     private bool isInit = false;
     private SongParser.Metadata songData;

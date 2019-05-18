@@ -3404,7 +3404,7 @@ MonoBehaviour:
   bottomLane: {fileID: 1794603426}
   middleLane: {fileID: 741301923}
   topLane: {fileID: 674900278}
-  noteSpeed: 0.005
+  noteSpeed: 0.0023
   hitOffset: 0.55
   greatHitOffset: 0.1
   perfectHitOffset: 0.25
