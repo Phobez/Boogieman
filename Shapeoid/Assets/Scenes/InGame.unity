@@ -3369,11 +3369,11 @@ MonoBehaviour:
   multiplier: 1
   power: 0
   energy: 1000
-  scoreText: {fileID: 1848491057}
-  streakText: {fileID: 138523013}
-  multiplierText: {fileID: 2021317024}
-  powerText: {fileID: 1246167734}
-  energyText: {fileID: 39903487}
+  scoreText: {fileID: 0}
+  streakText: {fileID: 0}
+  multiplierText: {fileID: 0}
+  powerText: {fileID: 0}
+  energyText: {fileID: 0}
 --- !u!114 &1494803395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3404,7 +3404,7 @@ MonoBehaviour:
   bottomLane: {fileID: 1794603426}
   middleLane: {fileID: 741301923}
   topLane: {fileID: 674900278}
-  noteSpeed: 0.005
+  noteSpeed: 0.0023
   hitOffset: 0.55
   greatHitOffset: 0.1
   perfectHitOffset: 0.25
