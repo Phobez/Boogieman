@@ -10,6 +10,7 @@ public class PostGameController : MonoBehaviour
     public TMP_Text notesHitText;
     public TMP_Text longestStreakText;
     public TMP_Text songTitleText;
+    public TMP_Text artistText;
 
     // Start is called before the first frame update
     private void Start()
@@ -29,5 +30,6 @@ public class PostGameController : MonoBehaviour
         longestStreakText.text = GameData.currentSongStats.longestStreak.ToString();
 
         songTitleText.text = GameData.chosenSongData.title;
+        artistText.text = "by" + string.Format("{0}", Environment.NewLine) + GameData.chosenSongData.artist;
     }
 }

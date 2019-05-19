@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TMPro;
 
 /// <summary>
 /// A component handling pausing and losing.
@@ -11,6 +12,12 @@ public class GameController : MonoBehaviour
     public ScoreHandler scoreHandler;
     public GameObject pausePanel;
     public GameObject losePanel;
+    public TMP_Text songTitle;
+
+    private void Start()
+    {
+        songTitle.text = GameData.chosenSongData.title;
+    }
 
     // Update is called once per frame
     private void Update()
