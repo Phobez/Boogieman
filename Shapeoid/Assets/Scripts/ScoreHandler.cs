@@ -72,7 +72,7 @@ public class ScoreHandler : MonoBehaviour
         }
         multiplierText.text = "Multiplier" + string.Format("{0}", Environment.NewLine) + multiplier + "x";
         //powerText.text = "Power: " + power;
-        energyText.text = "Energy: " + energy;
+        energyText.text = "ENERGY" + string.Format("{0}", Environment.NewLine) + energy;
     }
 
     // adds score by scoreVal times the current value of multiplier
