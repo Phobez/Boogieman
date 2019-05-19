@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: gnuolane rg SDF
+  m_Name: gnuolane rg SDF glow
   m_EditorClassIdentifier: 
-  hashCode: 1752632817
-  material: {fileID: 21385864339681188}
-  materialHashCode: -1098741158
+  hashCode: -767221214
+  material: {fileID: 21185874014158294}
+  materialHashCode: -240151191
   fontAssetType: 1
   m_fontInfo:
     Name: Gnuolane
@@ -38,7 +38,7 @@ MonoBehaviour:
     Padding: 5
     AtlasWidth: 512
     AtlasHeight: 512
-  atlas: {fileID: 28589990511317102}
+  atlas: {fileID: 28299109542231558}
   m_glyphInfoList:
   - id: 32
     x: 6
@@ -965,16 +965,16 @@ MonoBehaviour:
   boldSpacing: 7
   italicStyle: 35
   tabSize: 10
---- !u!21 &21385864339681188
+--- !u!21 &21185874014158294
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: gnuolane rg SDF Material
+  m_Name: gnuolane rg SDF glow Material
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: GLOW_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -997,7 +997,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 28589990511317102}
+        m_Texture: {fileID: 28299109542231558}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OutlineTex:
@@ -1020,7 +1020,7 @@ Material:
     - _FaceUVSpeedY: 0
     - _GlowInner: 0.05
     - _GlowOffset: 0
-    - _GlowOuter: 0.1
+    - _GlowOuter: 0.25
     - _GlowPower: 0.5
     - _GradientScale: 6
     - _LightAngle: 3.1416
@@ -1065,13 +1065,13 @@ Material:
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.5}
---- !u!28 &28589990511317102
+--- !u!28 &28299109542231558
 Texture2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: gnuolane rg SDF Atlas
+  m_Name: gnuolane rg SDF glow Atlas
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000

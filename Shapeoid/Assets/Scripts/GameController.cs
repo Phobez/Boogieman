@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     public GameObject pausePanel;
     public GameObject losePanel;
     public TMP_Text songTitle;
+    
 
     private void Start()
     {

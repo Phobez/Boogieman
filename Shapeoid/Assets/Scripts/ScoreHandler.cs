@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -6,9 +7,11 @@ using UnityEngine;
 /// </summary>
 public class ScoreHandler : MonoBehaviour
 {
+    public enum HitAccuracy { Perfect, Great, Good, Miss };
+
     public float score = 0.0f;
     public int multiplier = 1;
-    public int power = 0;
+    //public int power = 0;
     public int energy = 25;
     //public Text scoreText;
     //public Text streakText;
@@ -18,8 +21,9 @@ public class ScoreHandler : MonoBehaviour
     public TMP_Text scoreText;
     public TMP_Text streakText;
     public TMP_Text multiplierText;
-    public TMP_Text powerText;
+    //public TMP_Text powerText;
     public TMP_Text energyText;
+    public TMP_Text accuracyText;
 
 
     private SongController songController;
@@ -35,7 +39,7 @@ public class ScoreHandler : MonoBehaviour
     private SongStatsHandler songStatsHandler;
 
     private const float scoreVal = 100.0f;
-    private const int powerVal = 50;
+    //private const int powerVal = 50;
 
     // Start is called before the first frame update
     private void Start()
@@ -48,6 +52,7 @@ public class ScoreHandler : MonoBehaviour
         SongStatsHandler songStatsHandler = new SongStatsHandler();
         songStatsHandler.ClearData(GameData.currentSongStats);
 
+        accuracyText.text = "";
         //hitOffset = noteGenerator.hitOffset;
         //perfectOffset = hitOffset - 0.1f;
         //greatOffset = hitOffset - 0.25f;
@@ -56,10 +61,17 @@ public class ScoreHandler : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        scoreText.text = "Score: " + score;
-        streakText.text = "Streak: " + streak;
-        multiplierText.text = "Multiplier: " + multiplier + "x";
-        powerText.text = "Power: " + power;
+        scoreText.text = "Score" + string.Format("{0}", Environment.NewLine) + score;
+        if (streak > 3)
+        {
+            streakText.text = streak.ToString();
+        }
+        else
+        {
+            streakText.text = "";
+        }
+        multiplierText.text = "Multiplier" + string.Format("{0}", Environment.NewLine) + multiplier + "x";
+        //powerText.text = "Power: " + power;
         energyText.text = "Energy: " + energy;
     }
 
@@ -118,6 +130,8 @@ public class ScoreHandler : MonoBehaviour
         {
             GameData.currentSongStats.longestStreak = streak;
         }
+
+        streakText.SendMessage("Pulse");
     }
 
     private void ResetStreak()
@@ -129,7 +143,7 @@ public class ScoreHandler : MonoBehaviour
     // adds power by powerVal, validates it does not go over 100
     private void AddPower()
     {
-        power = Mathf.Clamp(power + powerVal, 0, 100);
+        //power = Mathf.Clamp(power + powerVal, 0, 100);
         AddStreak();
     }
 
@@ -145,5 +159,26 @@ public class ScoreHandler : MonoBehaviour
     private void LoseEnergy()
     {
         energy -= 2;
+    }
+
+    private void ChangeAccuracyText(ScoreHandler.HitAccuracy hitAccuracy)
+    {
+        switch (hitAccuracy)
+        {
+            case ScoreHandler.HitAccuracy.Perfect:
+                accuracyText.text = "PERFECT";
+                break;
+            case ScoreHandler.HitAccuracy.Great:
+                accuracyText.text = "GREAT";
+                break;
+            case ScoreHandler.HitAccuracy.Good:
+                accuracyText.text = "GOOD";
+                break;
+            case ScoreHandler.HitAccuracy.Miss:
+                accuracyText.text = "MISS";
+                break;
+        }
+
+        accuracyText.SendMessage("Pulse");
     }
 }
