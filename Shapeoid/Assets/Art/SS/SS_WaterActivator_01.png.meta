@@ -1,7 +1,42 @@
 fileFormatVersion: 2
 guid: 55ef626c5fb54de43b0bd885a30d595b
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: SS_WaterActivator_01_0
+    21300002: SS_WaterActivator_01_1
+    21300004: SS_WaterActivator_01_2
+    21300006: SS_WaterActivator_01_3
+    21300008: SS_WaterActivator_01_4
+    21300010: SS_WaterActivator_01_5
+    21300012: SS_WaterActivator_01_6
+    21300014: SS_WaterActivator_01_7
+    21300016: SS_WaterActivator_01_8
+    21300018: SS_WaterActivator_01_9
+    21300020: SS_WaterActivator_01_10
+    21300022: SS_WaterActivator_01_11
+    21300024: SS_WaterActivator_01_12
+    21300026: SS_WaterActivator_01_13
+    21300028: SS_WaterActivator_01_14
+    21300030: SS_WaterActivator_01_15
+    21300032: SS_WaterActivator_01_16
+    21300034: SS_WaterActivator_01_17
+    21300036: SS_WaterActivator_01_18
+    21300038: SS_WaterActivator_01_19
+    21300040: SS_WaterActivator_01_20
+    21300042: SS_WaterActivator_01_21
+    21300044: SS_WaterActivator_01_22
+    21300046: SS_WaterActivator_01_23
+    21300048: SS_WaterActivator_01_24
+    21300050: SS_WaterActivator_01_25
+    21300052: SS_WaterActivator_01_26
+    21300054: SS_WaterActivator_01_27
+    21300056: SS_WaterActivator_01_28
+    21300058: SS_WaterActivator_01_29
+    21300060: SS_WaterActivator_01_30
+    21300062: SS_WaterActivator_01_31
+    21300064: SS_WaterActivator_01_32
+    21300066: SS_WaterActivator_01_33
+    21300068: SS_WaterActivator_01_34
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -40,7 +75,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -69,9 +104,242 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: SS_WaterActivator_01_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 98
+        width: 40
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4fb05d879487fd4fafa2df6f1519d60
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_WaterActivator_01_1
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 84
+        width: 66
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d2ba11b68d461f4c80c915bf112e596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_WaterActivator_01_2
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 67
+        width: 93
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 593c5651d08f582448a42d8f8e528eb8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_WaterActivator_01_3
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 66
+        width: 113
+        height: 159
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7171d6249663a444a86a134ec1609771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_WaterActivator_01_4
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 66
+        width: 197
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2f6ea93764a368498cf06dd04a13040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_WaterActivator_01_5
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 66
+        width: 172
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1e85a40d48d59142b7dc2036426c467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_WaterActivator_01_6
+      rect:
+        serializedVersion: 2
+        x: 1046
+        y: 67
+        width: 244
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8dc307c52e263746a37f9f49cf96f26
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_WaterActivator_01_7
+      rect:
+        serializedVersion: 2
+        x: 1345
+        y: 66
+        width: 198
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f21309b5c314594fa9b2be2bc6ba819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_WaterActivator_01_8
+      rect:
+        serializedVersion: 2
+        x: 1615
+        y: 66
+        width: 171
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1e701631d9af9143b644e3fc9d6e7ed
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_WaterActivator_01_9
+      rect:
+        serializedVersion: 2
+        x: 1822
+        y: 67
+        width: 245
+        height: 164
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d11e154e39b3f34fbc903236324ffe0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
