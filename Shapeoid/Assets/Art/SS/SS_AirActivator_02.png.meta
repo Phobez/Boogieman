@@ -8,6 +8,10 @@ TextureImporter:
     21300006: SS_AirActivator_02_3
     21300008: SS_AirActivator_02_4
     21300010: SS_AirActivator_02_5
+    21300012: SS_AirActivator_02_6
+    21300014: SS_AirActivator_02_7
+    21300016: SS_AirActivator_02_8
+    21300018: SS_AirActivator_02_9
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -115,18 +119,18 @@ TextureImporter:
       name: SS_AirActivator_02_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 29
-        width: 67
-        height: 68
+        x: 19
+        y: 51
+        width: 29
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4392ffe5070556f4b870ab6db1974e0e
+      spriteID: 4710f0faa0b94884abcd4a68d9f78b55
       vertices: []
       indices: 
       edges: []
@@ -135,18 +139,18 @@ TextureImporter:
       name: SS_AirActivator_02_1
       rect:
         serializedVersion: 2
-        x: 74
-        y: 19
-        width: 81
-        height: 89
+        x: 92
+        y: 36
+        width: 49
+        height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85a9af8de9ebf89438acbf514399c92f
+      spriteID: 8bf189ec2a69c3b42a9cb8d6fdf622f4
       vertices: []
       indices: 
       edges: []
@@ -155,18 +159,18 @@ TextureImporter:
       name: SS_AirActivator_02_2
       rect:
         serializedVersion: 2
-        x: 168
-        y: 0
-        width: 220
-        height: 125
+        x: 181
+        y: 28
+        width: 69
+        height: 74
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4119625d559852c4f8fb9aff48c4162f
+      spriteID: afad32473ce24054c902dd8461a1a74a
       vertices: []
       indices: 
       edges: []
@@ -175,18 +179,18 @@ TextureImporter:
       name: SS_AirActivator_02_3
       rect:
         serializedVersion: 2
-        x: 391
-        y: 0
-        width: 126
-        height: 149
+        x: 282
+        y: 18
+        width: 90
+        height: 90
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b43e91fefe15f64da0f26e81ee35631
+      spriteID: ddbdc88aa5d1ace4fbd135203190b08f
       vertices: []
       indices: 
       edges: []
@@ -195,18 +199,18 @@ TextureImporter:
       name: SS_AirActivator_02_4
       rect:
         serializedVersion: 2
-        x: 533
-        y: 0
-        width: 740
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 408
+        y: 22
+        width: 93
+        height: 111
+      alignment: 9
+      pivot: {x: 0.58934957, y: 0.32532567}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0707baa767f346c48a5dd916ff4678bf
+      spriteID: 8f1d4665b1916ea4a9282984f65fe7bc
       vertices: []
       indices: 
       edges: []
@@ -215,18 +219,98 @@ TextureImporter:
       name: SS_AirActivator_02_5
       rect:
         serializedVersion: 2
-        x: 1281
-        y: 0
-        width: 199
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 539
+        y: 18
+        width: 136
+        height: 140
+      alignment: 9
+      pivot: {x: 0.44908366, y: 0.33183125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27982c23baf1be64eb2378042cf4fbc9
+      spriteID: 278d3352b2ed3014b9b605f7b6d04a93
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_AirActivator_02_6
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 22
+        width: 158
+        height: 154
+      alignment: 9
+      pivot: {x: 0.5701224, y: 0.23021077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c903942d1f0bae45918ad3c7ae42f6b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_AirActivator_02_7
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 25
+        width: 159
+        height: 177
+      alignment: 9
+      pivot: {x: 0.5174207, y: 0.21832179}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5643719594b4644cb97dc0ec024af74
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_AirActivator_02_8
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 23
+        width: 155
+        height: 210
+      alignment: 9
+      pivot: {x: 0.50893474, y: 0.19004223}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f19fa632a62d1c1498de29cc3e574e3e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS_AirActivator_02_9
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 22
+        width: 159
+        height: 216
+      alignment: 9
+      pivot: {x: 0.5348407, y: 0.2114754}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ba066b71d2ed494da3304e3a3db1ddc
       vertices: []
       indices: 
       edges: []

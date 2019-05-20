@@ -73,6 +73,7 @@ public class ActivatorController : MonoBehaviour
             {
                 //sprRend.sprite = airSprite;
                 // sprRend.color = Color.grey;
+                animator.SetTrigger("Air");
             }
             else if (Input.GetKeyDown(waterKey))
             {
