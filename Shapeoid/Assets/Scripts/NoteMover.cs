@@ -95,27 +95,32 @@ public class NoteMover : MonoBehaviour
 
         bool _isHit = false;
         float _accuracyMultiplier = 1.0f;
+        ScoreHandler.HitAccuracy _hitAccuracy = ScoreHandler.HitAccuracy.Good;
 
         if (transform.position.x >= activator.transform.position.x - hitOffset + perfectHitOffset && transform.position.x <= activator.transform.position.x + hitOffset - perfectHitOffset)
         {
             _accuracyMultiplier = 1.2f;
             _isHit = true;
+            _hitAccuracy = ScoreHandler.HitAccuracy.Perfect;
         }
         else if (transform.position.x >= activator.transform.position.x - hitOffset + greatHitOffset && transform.position.x <= activator.transform.position.x + hitOffset - greatHitOffset)
         {
             _accuracyMultiplier = 1.1f;
             _isHit = true;
+            _hitAccuracy = ScoreHandler.HitAccuracy.Great;
         }
         else if (transform.position.x >= activator.transform.position.x - hitOffset && transform.position.x <= activator.transform.position.x + hitOffset)
         {
             _accuracyMultiplier = 1f;
             _isHit = true;
+            _hitAccuracy = ScoreHandler.HitAccuracy.Good;
         }
 
         if (_isHit)
         {
             // Debug.Log("Accuracy Multiplier: " + _accuracyMultiplier);
             scoreHandler.SendMessage("AddScore", _accuracyMultiplier);
+            scoreHandler.SendMessage("ChangeAccuracyText", _hitAccuracy);
             GameData.currentSongStats.notesHit++;
             Destroy(this.gameObject);
         }
@@ -128,6 +133,7 @@ public class NoteMover : MonoBehaviour
         //Debug.Log("Lose energy sent.");
         scoreHandler.SendMessage("ResetStreak");
         //Debug.Log("Reset streak sent.");
+        scoreHandler.SendMessage("ChangeAccuracyText", ScoreHandler.HitAccuracy.Miss);
         yield return new WaitForSeconds(despawnTime);
         Destroy(this.gameObject);
     }

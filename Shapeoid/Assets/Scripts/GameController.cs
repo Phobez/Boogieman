@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -13,6 +12,15 @@ public class GameController : MonoBehaviour
     public ScoreHandler scoreHandler;
     public GameObject pausePanel;
     public GameObject losePanel;
+    public TMP_Text songTitle;
+    public TMP_Text artist;
+
+
+    private void Start()
+    {
+        songTitle.text = GameData.chosenSongData.title;
+        artist.text = GameData.chosenSongData.artist;
+    }
 
     // Update is called once per frame
     private void Update()

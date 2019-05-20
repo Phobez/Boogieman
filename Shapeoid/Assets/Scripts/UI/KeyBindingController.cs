@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// A component which controls key binding changes.
@@ -12,10 +13,14 @@ public class KeyBindingController : MonoBehaviour
 {
     private GameObject selectedKeyBindingButton;
     public EventSystem eventSystem;
-    public Text fireKeyText;
-    public Text airKeyText;
-    public Text waterKeyText;
-    public Text earthKeyText;
+    //public Text fireKeyText;
+    //public Text airKeyText;
+    //public Text waterKeyText;
+    //public Text earthKeyText;
+    public TMP_Text fireKeyText;
+    public TMP_Text airKeyText;
+    public TMP_Text waterKeyText;
+    public TMP_Text earthKeyText;
 
     private void OnEnable()
     {
