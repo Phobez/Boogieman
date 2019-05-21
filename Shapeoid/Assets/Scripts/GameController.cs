@@ -18,6 +18,8 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1.0f;
+
         songTitle.text = GameData.chosenSongData.title;
         artist.text = GameData.chosenSongData.artist;
     }
