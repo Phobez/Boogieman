@@ -64,7 +64,7 @@ public class NoteGenerator : MonoBehaviour
     {
         // if done initialising the rest of the world
         // and haven't gone through all bars of the song yet
-        if (isInit && barCount < noteData.bars.Count)
+        if (isInit && barCount < noteData.bars.Count && !isPaused)
         {
             // calculate time offset using s = d /t equation
             // (t = d / s)

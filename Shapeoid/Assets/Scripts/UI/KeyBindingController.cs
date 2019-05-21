@@ -32,15 +32,19 @@ public class KeyBindingController : MonoBehaviour
 
     private void OnGUI()
     {
+        Debug.Log(eventSystem.currentSelectedGameObject);
+        Debug.Log("In OnGUI: " + selectedKeyBindingButton);
         if (selectedKeyBindingButton != null)
         {
+            Debug.Log("IF entered.");
             Event _event = Event.current;
 
             if (_event.isKey)
             {
                 GameData.currentSavedData.keyBindings[selectedKeyBindingButton.name] = _event.keyCode;
-                //Debug.Log(GameData.currentSavedData.keyBindings[selectedKeyBindingButton.name]);
-                selectedKeyBindingButton.GetComponentInChildren<Text>().text = _event.keyCode.ToString();
+                Debug.Log(_event.keyCode);
+                Debug.Log(GameData.currentSavedData.keyBindings[selectedKeyBindingButton.name]);
+                selectedKeyBindingButton.GetComponentInChildren<TMP_Text>().text = _event.keyCode.ToString();
                 selectedKeyBindingButton = null;
             }
         }
@@ -48,7 +52,9 @@ public class KeyBindingController : MonoBehaviour
 
     public void SetAsSelectedKeyBindingButton(GameObject keyBindingButton)
     {
-        selectedKeyBindingButton = keyBindingButton;
+        Debug.Log("SetAsSelectedKeyBindingButton called.");
+        this.selectedKeyBindingButton = keyBindingButton;
+        Debug.Log("In SetAsSelectedKeyBindingButton: " + selectedKeyBindingButton);
         eventSystem.SetSelectedGameObject(keyBindingButton);
     }
 }

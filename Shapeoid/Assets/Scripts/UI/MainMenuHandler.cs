@@ -29,6 +29,6 @@ public class MainMenuHandler : MonoBehaviour
         {
             SaveLoad.Save();
         }
-        Debug.Log(GameData.currentSavedData.highscores.Count);
+        //Debug.Log(GameData.currentSavedData.highscores.Count);
     }
 }
