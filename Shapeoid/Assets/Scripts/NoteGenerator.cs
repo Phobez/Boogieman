@@ -133,21 +133,25 @@ public class NoteGenerator : MonoBehaviour
 
         for (int i = 0; i < bar.Count; i++)
         {
-            if (IsThereNote(bar[i].bottom))
-            {
-                GameObject _obj = (GameObject)Instantiate(GetNotePrefab(bar[i].bottom, true), new Vector3(bottomLane.transform.position.x + distance, bottomLane.transform.position.y, bottomLane.transform.position.z - 0.3f), Quaternion.identity);
-                GameData.currentSongStats.notesCounter++;
-            }
+            //if (IsThereNote(bar[i].bottom))
+            //{
+            //    GameObject _obj = (GameObject)Instantiate(GetNotePrefab(bar[i].bottom, true), new Vector3(bottomLane.transform.position.x + distance, bottomLane.transform.position.y, bottomLane.transform.position.z - 0.3f), Quaternion.identity);
+            //    GameData.currentSongStats.notesCounter++;
+            //}
             if (bar[i].middle != 0)
             {
-                GameObject _obj = (GameObject)Instantiate(GetNotePrefab(bar[i].middle, false), new Vector3(middleLane.transform.position.x + distance, middleLane.transform.position.y, middleLane.transform.position.z - 0.3f), Quaternion.identity);
+                //GameObject _obj = (GameObject)Instantiate(GetNotePrefab(bar[i].middle, false), new Vector3(middleLane.transform.position.x + distance, middleLane.transform.position.y, middleLane.transform.position.z - 0.3f), Quaternion.identity);
+                GameObject _obj = ObjectPooler.instance.GetObject((int)bar[i].middle - 1);
+                _obj.transform.position = new Vector3(middleLane.transform.position.x + distance, middleLane.transform.position.y, middleLane.transform.position.z - 0.3f);
+                _obj.transform.rotation = Quaternion.identity;
+                _obj.SetActive(true);
                 GameData.currentSongStats.notesCounter++;
             }
-            if (bar[i].top != 0)
-            {
-                GameObject _obj = (GameObject)Instantiate(GetNotePrefab(bar[i].top, true), new Vector3(topLane.transform.position.x + distance, topLane.transform.position.y, topLane.transform.position.z - 0.3f), Quaternion.identity);
-                GameData.currentSongStats.notesCounter++;
-            }
+            //if (bar[i].top != 0)
+            //{
+            //    GameObject _obj = (GameObject)Instantiate(GetNotePrefab(bar[i].top, true), new Vector3(topLane.transform.position.x + distance, topLane.transform.position.y, topLane.transform.position.z - 0.3f), Quaternion.identity);
+            //    GameData.currentSongStats.notesCounter++;
+            //}
 
             yield return new WaitForSeconds((barTime / bar.Count) - Time.deltaTime);
         }

@@ -74,7 +74,8 @@ public class NoteMover : MonoBehaviour
             // missed
             if (transform.position.x < activator.transform.position.x - hitOffset && !isDespawning)
             {
-                GetComponent<Renderer>().material.SetColor("_Color", new Color(0.5f, 0.0f, 0.0f));
+                //GetComponent<Renderer>().material.SetColor("_Color", new Color(0.5f, 0.0f, 0.0f));
+                GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.0f, 0.0f);
                 StartCoroutine(DespawnNote());
                 isDespawning = true;
             }
@@ -122,7 +123,8 @@ public class NoteMover : MonoBehaviour
             scoreHandler.SendMessage("AddScore", _accuracyMultiplier);
             scoreHandler.SendMessage("ChangeAccuracyText", _hitAccuracy);
             GameData.currentSongStats.notesHit++;
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
+            gameObject.SetActive(false);
         }
     }
 
@@ -135,7 +137,9 @@ public class NoteMover : MonoBehaviour
         //Debug.Log("Reset streak sent.");
         scoreHandler.SendMessage("ChangeAccuracyText", ScoreHandler.HitAccuracy.Miss);
         yield return new WaitForSeconds(despawnTime);
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
+        gameObject.SetActive(false);
+        GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f);
     }
 
     protected void OnTriggerEnter2D(Collider2D collision)
