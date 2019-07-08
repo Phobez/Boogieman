@@ -323,7 +323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &20921873
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1042,7 +1042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &285509191
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5082,7 +5082,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 988925646}
+      - m_Target: {fileID: 1566352991}
         m_MethodName: SetAsSelectedKeyBindingButton
         m_Mode: 2
         m_Arguments:
@@ -5696,7 +5696,7 @@ GameObject:
   - component: {fileID: 988925646}
   - component: {fileID: 988925647}
   m_Layer: 5
-  m_Name: SettingsPanel
+  m_Name: OLD SETTINGS PANEL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7138,7 +7138,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 988925646}
+      - m_Target: {fileID: 1566352991}
         m_MethodName: SetAsSelectedKeyBindingButton
         m_Mode: 2
         m_Arguments:
@@ -7425,7 +7425,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 988925646}
+      - m_Target: {fileID: 1566352991}
         m_MethodName: SetAsSelectedKeyBindingButton
         m_Mode: 2
         m_Arguments:
@@ -11629,7 +11629,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 988925646}
+      - m_Target: {fileID: 1566352991}
         m_MethodName: SetAsSelectedKeyBindingButton
         m_Mode: 2
         m_Arguments:

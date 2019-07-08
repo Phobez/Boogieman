@@ -22,18 +22,21 @@ public class KeyBindingController : MonoBehaviour
     public TMP_Text waterKeyText;
     public TMP_Text earthKeyText;
 
+    //private bool buttonSelected = false;
+
     private void OnEnable()
     {
-        fireKeyText.text = GameData.currentSavedData.keyBindings[fireKeyText.transform.parent.name].ToString();
-        airKeyText.text = GameData.currentSavedData.keyBindings[airKeyText.transform.parent.name].ToString();
-        waterKeyText.text = GameData.currentSavedData.keyBindings[waterKeyText.transform.parent.name].ToString();
-        earthKeyText.text = GameData.currentSavedData.keyBindings[earthKeyText.transform.parent.name].ToString();
+        fireKeyText.text = GameData.currentSavedData.keyBindings[fireKeyText.rectTransform.parent.name].ToString();
+        airKeyText.text = GameData.currentSavedData.keyBindings[airKeyText.rectTransform.parent.name].ToString();
+        waterKeyText.text = GameData.currentSavedData.keyBindings[waterKeyText.rectTransform.parent.name].ToString();
+        earthKeyText.text = GameData.currentSavedData.keyBindings[earthKeyText.rectTransform.parent.name].ToString();
     }
 
     private void OnGUI()
     {
-        Debug.Log(eventSystem.currentSelectedGameObject);
-        Debug.Log("In OnGUI: " + selectedKeyBindingButton);
+        //Debug.Log(eventSystem.currentSelectedGameObject);
+        //Debug.Log("In OnGUI: " + selectedKeyBindingButton);
+        //Debug.Log(selectedKeyBindingButton);
         if (selectedKeyBindingButton != null)
         {
             Debug.Log("IF entered.");
@@ -42,19 +45,21 @@ public class KeyBindingController : MonoBehaviour
             if (_event.isKey)
             {
                 GameData.currentSavedData.keyBindings[selectedKeyBindingButton.name] = _event.keyCode;
-                Debug.Log(_event.keyCode);
-                Debug.Log(GameData.currentSavedData.keyBindings[selectedKeyBindingButton.name]);
+                //Debug.Log(_event.keyCode);
+                //Debug.Log(GameData.currentSavedData.keyBindings[selectedKeyBindingButton.name]);
                 selectedKeyBindingButton.GetComponentInChildren<TMP_Text>().text = _event.keyCode.ToString();
                 selectedKeyBindingButton = null;
+                //buttonSelected = false;
             }
         }
     }
 
     public void SetAsSelectedKeyBindingButton(GameObject keyBindingButton)
     {
-        Debug.Log("SetAsSelectedKeyBindingButton called.");
-        this.selectedKeyBindingButton = keyBindingButton;
-        Debug.Log("In SetAsSelectedKeyBindingButton: " + selectedKeyBindingButton);
+        //Debug.Log("SetAsSelectedKeyBindingButton called.");
+        selectedKeyBindingButton = keyBindingButton;
+        //Debug.Log("In SetAsSelectedKeyBindingButton: " + selectedKeyBindingButton);
         eventSystem.SetSelectedGameObject(keyBindingButton);
+        //buttonSelected = true;
     }
 }
